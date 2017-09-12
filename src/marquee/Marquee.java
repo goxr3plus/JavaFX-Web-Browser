@@ -61,7 +61,7 @@ public class Marquee extends Pane {
 
 	// FXMLLOADER
 	try {
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("Marquee.fxml"));
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Marquee.fxml"));
 	    loader.setController(this);
 	    loader.setRoot(this);
 	    loader.load();

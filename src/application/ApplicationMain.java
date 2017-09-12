@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 /**
  * From here you start the application
  * 
- * @author GOXR3PLUS
+ * @author GOXR3PLUS STUDIO ( your bro! )
  *
  */
 public class ApplicationMain extends Application {
@@ -50,7 +50,6 @@ public class ApplicationMain extends Application {
 
 	//Scene
 	Scene scene = new Scene(root, getVisualScreenWidth() / 1.2, getVisualScreenHeight() / 1.2);
-	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 	//Prepare the Stage
 	primaryStage.setTitle("JavaFX WebBrowser Made By GOXR3PLUS STUDIO :) ");
