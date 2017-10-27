@@ -1,3 +1,5 @@
+### PS Java 1.8.0_141 ++ Required ! Download Java 8 here : ( https://www.java.com/en/ )
+
 # Description
 
 You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place . It took me 2 days to make it and it is here for you ready to test and improve it .
