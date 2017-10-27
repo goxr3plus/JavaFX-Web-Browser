@@ -21,7 +21,7 @@
      modification.
  */
 
-package marquee;
+package main.java.com.goxr3plus.JavaFXWebBrowser.marquee;
 
 import java.io.IOException;
 

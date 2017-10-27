@@ -1,5 +1,7 @@
-
-package application;
+/**
+ * 
+ */
+package main.java.com.goxr3plus.JavaFXWebBrowser.browser;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -33,12 +35,13 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
-import marquee.Marquee;
+import main.java.com.goxr3plus.JavaFXWebBrowser.marquee.Marquee;
+import main.java.com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
 
 /**
  * This class represents a Tab from The WebBrowser
  * 
- * @author GOXR3PLUS STUDIO
+ * @author GOXR3PLUS
  *
  */
 public class WebBrowserTabController extends StackPane {
@@ -108,7 +111,7 @@ public class WebBrowserTabController extends StackPane {
 		this.tab.setContent(this);
 		
 		// ------------------------------------FXMLLOADER ----------------------------------------
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/WebBrowserTabController.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(InfoTool.FXMLS + "WebBrowserTabController.fxml"));
 		loader.setController(this);
 		loader.setRoot(this);
 		
@@ -190,6 +193,9 @@ public class WebBrowserTabController extends StackPane {
 		HBox hBox = new HBox();
 		hBox.getChildren().addAll(stack, marquee);
 		tab.setGraphic(hBox);
+		
+		//ContextMenu
+		tab.setContextMenu(new WebBrowserTabContextMenu(this,webBrowserController));
 		
 		//-------------------Items------------------------
 		
@@ -371,7 +377,7 @@ public class WebBrowserTabController extends StackPane {
 		
 		//Check for internet connection
 		Thread thread = new Thread(() -> {
-			boolean hasInternet = isReachableByPing("www.google.com");
+			boolean hasInternet = InfoTool.isReachableByPing("www.google.com");
 			Platform.runLater(() -> {
 				errorPane.setVisible(!hasInternet);
 				if (hasInternet)
@@ -395,31 +401,6 @@ public class WebBrowserTabController extends StackPane {
 	 */
 	public void setHistory(WebHistory history) {
 		this.history = history;
-	}
-	
-	/**
-	 * Checks if a web site is reachable using ping command.
-	 *
-	 * @param host
-	 *            the host
-	 * @return <b> true </b> if Connected on Internet,<b> false </b> if not.
-	 */
-	public static boolean isReachableByPing(String host) {
-		try {
-			
-			// Start a new Process
-			Process process = Runtime.getRuntime().exec("ping -" + ( System.getProperty("os.name").toLowerCase().startsWith("windows") ? "n" : "c" ) + " 1 " + host);
-			
-			//Wait for it to finish
-			process.waitFor();
-			
-			//Check the return value
-			return process.exitValue() == 0;
-			
-		} catch (Exception ex) {
-			Logger.getLogger(WebBrowserTabController.class.getName()).log(Level.INFO, null, ex);
-			return false;
-		}
 	}
 	
 }

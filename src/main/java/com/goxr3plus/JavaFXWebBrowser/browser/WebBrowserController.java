@@ -1,4 +1,7 @@
-package application;
+/**
+ * TODO LISENSE
+ */
+package main.java.com.goxr3plus.JavaFXWebBrowser.browser;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -6,6 +9,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -14,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
+import main.java.com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
 
 /**
  * @author GOXR3PLUS
@@ -40,7 +45,7 @@ public class WebBrowserController extends StackPane {
 	public WebBrowserController() {
 		
 		// ------------------------------------FXMLLOADER ----------------------------------------
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/WebBrowserController.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(InfoTool.FXMLS + "WebBrowserController.fxml"));
 		loader.setController(this);
 		loader.setRoot(this);
 		
@@ -91,10 +96,10 @@ public class WebBrowserController extends StackPane {
 		//Create
 		Tab tab = new Tab("");
 		WebBrowserTabController webBrowserTab = new WebBrowserTabController(this, tab, webSite.length == 0 ? null : webSite[0]);
-		tab.setOnCloseRequest(c -> {
+		tab.setOnClosed(c -> {
 			
 			//Check the tabs number
-			if (tabPane.getTabs().size() == 1)
+			if (tabPane.getTabs().isEmpty())
 				createAndAddNewTab();
 			
 			// Delete cache for navigate back
@@ -106,6 +111,60 @@ public class WebBrowserController extends StackPane {
 		});
 		
 		return webBrowserTab;
+	}
+	
+	/**
+	 * Closes the tabs to the right of the given Tab
+	 * 
+	 * @param tab
+	 */
+	public void closeTabsToTheRight(Tab givenTab) {
+		//Return if size <= 1
+		if (tabPane.getTabs().size() <= 1)
+			return;
+		
+		//The start
+		int start = tabPane.getTabs().indexOf(givenTab);
+		
+		//Remove the appropriate items
+		tabPane.getTabs().stream()
+				//filter
+				.filter(tab -> tabPane.getTabs().indexOf(tab) > start)
+				//Collect the all to a list
+				.collect(Collectors.toList()).forEach(this::removeTab);
+		
+	}
+	
+	/**
+	 * Closes the tabs to the left of the given Tab
+	 * 
+	 * @param tab
+	 */
+	public void closeTabsToTheLeft(Tab givenTab) {
+		//Return if size <= 1
+		if (tabPane.getTabs().size() <= 1)
+			return;
+		
+		//The start
+		int start = tabPane.getTabs().indexOf(givenTab);
+		
+		//Remove the appropriate items
+		tabPane.getTabs().stream()
+				//filter
+				.filter(tab -> tabPane.getTabs().indexOf(tab) < start)
+				//Collect the all to a list
+				.collect(Collectors.toList()).forEach(this::removeTab);
+		
+	}
+	
+	/**
+	 * Removes this Tab from the TabPane
+	 * 
+	 * @param tab
+	 */
+	public void removeTab(Tab tab) {
+		tabPane.getTabs().remove(tab);
+		tab.getOnClosed().handle(null);
 	}
 	
 	/**
