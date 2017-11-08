@@ -5,8 +5,6 @@
 [![Latest Version](https://img.shields.io/github/release/goxr3plus/JavaFX-Web-Browser.svg?style=flat-square)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
 [![GitHub contributors][contributors-image]][contributors-url]
 [![HitCount](http://hits.dwyl.io/goxr3plus/JavaFX-Web-Browser.svg)](http://hits.dwyl.io/goxr3plus/xr3player)
-
-Github
 [![Total Downloads](https://img.shields.io/github/downloads/goxr3plus/JavaFX-Web-Browser/total.svg)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
 
 [contributors-url]: https://github.com/goxr3plus/JavaFX-Web-Browser/graphs/contributors
