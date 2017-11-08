@@ -16,11 +16,11 @@ What that means ? Well you can download the jar file with Maven , Gradle etc ( t
 
 --> You don't believe me ?? ( I am already doing this with [XR3Player](https://github.com/goxr3plus/XR3Player) ) 
 
---> How you can embed it inside your application ? ( Use JitPack.io )
+--> How you can embed it inside your application ? ( Use [JitPack.io](https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.0.0) )
 
 ### Add it to your project using JitPack :
 
-https://jitpack.io/private#goxr3plus/java-google-speech-api
+https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.0.0
 
 ### Step 1. Add the JitPack repository to your build file
 ``` XML
