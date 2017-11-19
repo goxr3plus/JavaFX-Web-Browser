@@ -19,8 +19,10 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -30,7 +32,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
@@ -166,15 +167,19 @@ public class WebBrowserTabController extends StackPane {
 		indicator.visibleProperty().bind(webEngine.getLoadWorker().runningProperty());
 		indicator.setMaxSize(30, 11);
 		
-		// text
-		Text text = new Text();
-		text.setStyle("-fx-font-size:70%;");
-		text.textProperty().bind(Bindings.max(0, indicator.progressProperty()).multiply(100.00).asString("%.02f %%"));
+		// label
+		Label label = new Label();
+		label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		label.setAlignment(Pos.CENTER);
+		label.setStyle("-fx-font-weight:bold; -fx-text-fill: white; -fx-font-size:10; -fx-background-color: rgb(0,0,0,0.3);");
+		label.textProperty().bind(Bindings.max(0, indicator.progressProperty()).multiply(100).asString("%.00f %%"));
+		//label.textProperty().bind(Bindings.max(0, indicator.progressProperty()).multiply(100.00).asString("%.02f %%"))
+		// text.visibleProperty().bind(library.getSmartController().inputService.runningProperty())
 		
 		Marquee marquee = new Marquee();
 		marquee.textProperty().bind(tab.getTooltip().textProperty());
 		
-		stack.getChildren().addAll(indicator, text);
+		stack.getChildren().addAll(indicator, label);
 		stack.setManaged(false);
 		stack.setVisible(false);
 		
@@ -195,7 +200,7 @@ public class WebBrowserTabController extends StackPane {
 		tab.setGraphic(hBox);
 		
 		//ContextMenu
-		tab.setContextMenu(new WebBrowserTabContextMenu(this,webBrowserController));
+		tab.setContextMenu(new WebBrowserTabContextMenu(this, webBrowserController));
 		
 		//-------------------Items------------------------
 		
