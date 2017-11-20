@@ -20,7 +20,7 @@ What that means ? Well you can download the jar file with Maven , Gradle etc ( t
 
 ### Add it to your project using JitPack :
 
-https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.0.0
+https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.1.0
 
 ### Step 1. Add the JitPack repository to your build file
 ``` XML
@@ -37,7 +37,7 @@ https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.0.0
 <dependency>
 	 <groupId>com.github.goxr3plus</groupId>
 	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.0.0</version>
+	 <version>V3.1.0</version>
 </dependency>
 ```
 
@@ -63,7 +63,7 @@ You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the 
 
 This project is part of XR3Player java Media Player , so i will continue to improve it in every update :) 
 
-Donwload latest prebuild zip folder V3.0.0 [here](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.0.0/JavaFXWebBrowser.zip)
+Donwload latest prebuild zip folder V3.1.0 [here](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.1.0/JavaFXWebBrowser-3.1.0.zip)
 
 ![javafxwebbrowser](https://user-images.githubusercontent.com/20374208/32561528-18323d74-c4b5-11e7-9552-f7aeba4f9728.jpg)
 
