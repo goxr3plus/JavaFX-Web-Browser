@@ -1,0 +1,32 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/3.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/3.0.0 http://maven.apache.org/xsd/assembly-3.0.0.xsd">
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}</directory>
+			<outputDirectory>.</outputDirectory>
+			<includes>
+				<include>README*</include>
+				<include>LICENSE*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory>.</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+				<include>JavaFXWebBrowser_lib</include>
+				<include>JavaFXWebBrowser_lib/*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/site</directory>
+			<outputDirectory>docs</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>
