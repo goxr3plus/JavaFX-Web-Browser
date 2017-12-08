@@ -20,7 +20,7 @@ What that means ? Well you can download the jar file with Maven , Gradle etc ( t
 
 ### Add it to your project using JitPack :
 
-https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.1.0
+https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.2.0
 
 ### Step 1. Add the JitPack repository to your build file
 ``` XML
@@ -37,7 +37,7 @@ https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.1.0
 <dependency>
 	 <groupId>com.github.goxr3plus</groupId>
 	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.1.0</version>
+	 <version>V3.2.0</version>
 </dependency>
 ```
 
