@@ -72,7 +72,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <TextField fx:id="searchBar" promptText="Search..." style="-fx-background-radius: 0 0 0 0;" styleClass="special-text-field" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="searchBar" promptText="Search..." style="-fx-background-radius: 45;" styleClass="jfx-text-area" HBox.hgrow="ALWAYS" />
                               <Button fx:id="goButton" mnemonicParsing="false" style="-fx-background-radius: 0 45 45 0;" text="Go">
                                  <tooltip>
                                     <Tooltip text="Load the Web Site" />
@@ -83,18 +83,6 @@
                               </Button>
                            </children>
                         </HBox>
-                        <JFXButton contentDisplay="GRAPHIC_ONLY" text=" ">
-                           <graphic>
-                              <ImageView fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../image/Settings-32.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
                         <ComboBox fx:id="searchEngineComboBox" prefHeight="31.0" prefWidth="152.0" promptText="search engine">
                            <cursor>
                               <Cursor fx:constant="HAND" />

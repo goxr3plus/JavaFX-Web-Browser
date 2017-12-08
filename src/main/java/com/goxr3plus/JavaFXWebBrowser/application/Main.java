@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserController;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 /**
  * From here you start the application
@@ -40,7 +41,8 @@ public class Main extends Application {
 		Scene scene = new Scene(root, getVisualScreenWidth() / 1.2, getVisualScreenHeight() / 1.2);
 		
 		//Prepare the Stage
-		primaryStage.setTitle("JavaFX Web Browser");
+		primaryStage.setTitle("JavaFX Web Browser- Made by GOXR3PLUS Studio");
+		primaryStage.getIcons().add(InfoTool.getImageFromResourcesFolder("logo.png"));
 		primaryStage.setScene(scene);
 		primaryStage.setOnCloseRequest(cl -> System.exit(0));
 		primaryStage.show();

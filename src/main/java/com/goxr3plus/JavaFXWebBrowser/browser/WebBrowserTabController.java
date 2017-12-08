@@ -107,7 +107,7 @@ public class WebBrowserTabController extends StackPane {
 	
 	private final WebBrowserController webBrowserController;
 	
-	private final ImageView tabImage = new ImageView();
+	private final ImageView facIconImageView = new ImageView();
 	
 	/**
 	 * Constructor
@@ -170,11 +170,11 @@ public class WebBrowserTabController extends StackPane {
 					List<BufferedImage> image = ICODecoder.read(httpcon.getInputStream());
 					
 					//Set the favicon
-					tabImage.setImage(SwingFXUtils.toFXImage(image.get(0), null));
+					facIconImageView.setImage(SwingFXUtils.toFXImage(image.get(0), null));
 					
 				} catch (Exception ex) {
 					//ex.printStackTrace()
-					tabImage.setImage(null);
+					facIconImageView.setImage(null);
 				}
 			}
 			
@@ -229,15 +229,16 @@ public class WebBrowserTabController extends StackPane {
 			}
 		});
 		
-		//tabImage 
-		tabImage.setFitWidth(20);
-		tabImage.setFitHeight(20);
-		tabImage.setSmooth(true);
-		tabImage.managedProperty().bind(tabImage.imageProperty().isNotNull());
+		//facIconImageView 
+		facIconImageView.setFitWidth(20);
+		facIconImageView.setFitHeight(20);
+		facIconImageView.setSmooth(true);
+		facIconImageView.visibleProperty().bind(indicator.visibleProperty().not());
+		facIconImageView.managedProperty().bind(facIconImageView.imageProperty().isNotNull().and(indicator.visibleProperty().not()));
 		
 		// HBOX
 		HBox hBox = new HBox();
-		hBox.getChildren().addAll(tabImage, stack, marquee);
+		hBox.getChildren().addAll(facIconImageView, stack, marquee);
 		tab.setGraphic(hBox);
 		
 		//ContextMenu
