@@ -4,9 +4,7 @@
 package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,16 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.apache.commons.validator.routines.UrlValidator;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.w3c.dom.Document;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -44,7 +33,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
@@ -54,9 +42,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
+import javafx.scene.web.WebView;
 import main.java.com.goxr3plus.javafxwebbrowser.marquee.Marquee;
 import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
-import javafx.scene.web.WebView;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
@@ -185,7 +173,7 @@ public class WebBrowserTabController extends StackPane {
 					tabImage.setImage(SwingFXUtils.toFXImage(image.get(0), null));
 					
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					//ex.printStackTrace()
 					tabImage.setImage(null);
 				}
 			}
