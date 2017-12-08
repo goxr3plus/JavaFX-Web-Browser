@@ -13,6 +13,8 @@
 # Youtube tutorial 
 [![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
 
+Repository of tutorial -> https://github.com/goxr3plus/JavaFXBrowserOverlay
+
 # From version V3.0.0 it is completely embeddable!!!
 
 What that means ? Well you can download the jar file with Maven , Gradle etc ( the depencities will come along ) and use it inside your application . 
