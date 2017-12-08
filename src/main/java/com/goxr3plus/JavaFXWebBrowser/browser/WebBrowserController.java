@@ -1,7 +1,7 @@
 /**
  * TODO LISENSE
  */
-package main.java.com.goxr3plus.JavaFXWebBrowser.browser;
+package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
-import main.java.com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 /**
  * @author GOXR3PLUS
@@ -400,9 +400,8 @@ public class WebBrowserController extends StackPane {
 			"https://www.yadi.sk", "https://www.yahoo.co.jp", "https://www.yahoo.com", "https://www.yale.edu", "https://www.yandex.com.tr", "https://www.yandex.kz",
 			"https://www.yandex.ru", "https://www.yandex.ua", "https://www.yaplakal.com", "https://www.yelp.com", "https://www.yenisafak.com", "https://www.yesky.com",
 			"https://www.yjc.ir", "https://www.youboy.com", "https://www.youdao.com", "https://www.youjizz.com", "https://www.youku.com", "https://www.youm7.com",
-			"https://www.youporn.com", "https://www.youronlinechoices.com", "https://www.youth.cn", "https://www.youtube-mp3.org",
-			"https://www.youtube.com", "https://www.ytimg.com", "https://www.yts.ag", "https://www.zdnet.com", "https://www.zendesk.com", "https://www.zhanqi.tv",
-			"https://www.zhihu.com", "https://www.zillow.com", "https://www.zing.vn", "https://www.zippyshare.com", "https://www.zoho.com", "https://www.zomato.com",
-			"https://www.zone-telechargement.ws", "https://www.zoom.us"));
+			"https://www.youporn.com", "https://www.youronlinechoices.com", "https://www.youth.cn", "https://www.youtube.com", "https://www.ytimg.com", "https://www.yts.ag",
+			"https://www.zdnet.com", "https://www.zendesk.com", "https://www.zhanqi.tv", "https://www.zhihu.com", "https://www.zillow.com", "https://www.zing.vn",
+			"https://www.zippyshare.com", "https://www.zoho.com", "https://www.zomato.com", "https://www.zone-telechargement.ws", "https://www.zoom.us"));
 	
 }

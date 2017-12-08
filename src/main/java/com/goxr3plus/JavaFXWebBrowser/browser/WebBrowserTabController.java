@@ -1,15 +1,30 @@
 /**
  * 
  */
-package main.java.com.goxr3plus.JavaFXWebBrowser.browser;
+package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import org.apache.commons.validator.routines.UrlValidator;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.w3c.dom.Document;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -17,6 +32,8 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Worker;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -27,6 +44,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -35,9 +54,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
+import main.java.com.goxr3plus.javafxwebbrowser.marquee.Marquee;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import javafx.scene.web.WebView;
-import main.java.com.goxr3plus.JavaFXWebBrowser.marquee.Marquee;
-import main.java.com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
  * This class represents a Tab from The WebBrowser
@@ -99,6 +119,8 @@ public class WebBrowserTabController extends StackPane {
 	
 	private final WebBrowserController webBrowserController;
 	
+	private final ImageView tabImage = new ImageView();
+	
 	/**
 	 * Constructor
 	 * 
@@ -146,10 +168,35 @@ public class WebBrowserTabController extends StackPane {
 		//-------------------WebEngine------------------------
 		webEngine = webView.getEngine();
 		webEngine.getLoadWorker().exceptionProperty().addListener(error -> checkForInternetConnection());
+		//Add listener to the WebEngine
+		webEngine.getLoadWorker().stateProperty().addListener((observable , oldState , newState) -> {
+			if (newState == Worker.State.SUCCEEDED) {
+				try {
+					//Determine the full url
+					String favIconFullURL = getHostName(webEngine.getLocation()) + "favicon.ico";
+					//System.out.println(favIconFullURL)
+					
+					//Create HttpURLConnection 
+					HttpURLConnection httpcon = (HttpURLConnection) new URL(favIconFullURL).openConnection();
+					httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
+					List<BufferedImage> image = ICODecoder.read(httpcon.getInputStream());
+					
+					//Set the favicon
+					tabImage.setImage(SwingFXUtils.toFXImage(image.get(0), null));
+					
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					tabImage.setImage(null);
+				}
+			}
+			
+		});
 		webEngine.setOnError(error -> checkForInternetConnection());
+		
 		//handle pop up windows
 		webEngine.setCreatePopupHandler(l -> webBrowserController.createAndAddNewTab().getWebView().getEngine());
 		
+		//History
 		setHistory(webEngine.getHistory());
 		historyEntryList = getHistory().getEntries();
 		SimpleListProperty<Entry> list = new SimpleListProperty<>(historyEntryList);
@@ -194,9 +241,15 @@ public class WebBrowserTabController extends StackPane {
 			}
 		});
 		
+		//tabImage 
+		tabImage.setFitWidth(20);
+		tabImage.setFitHeight(20);
+		tabImage.setSmooth(true);
+		tabImage.managedProperty().bind(tabImage.imageProperty().isNotNull());
+		
 		// HBOX
 		HBox hBox = new HBox();
-		hBox.getChildren().addAll(stack, marquee);
+		hBox.getChildren().addAll(tabImage, stack, marquee);
 		tab.setGraphic(hBox);
 		
 		//ContextMenu
@@ -253,6 +306,23 @@ public class WebBrowserTabController extends StackPane {
 		
 		//Load the website
 		loadWebSite(firstWebSite);
+	}
+	
+	/**
+	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
+	 * https://duckduckgo.com
+	 * 
+	 * @param urlInput
+	 * @return
+	 */
+	private String getHostName(String urlInput) {
+		try {
+			URL url = new URL(urlInput);
+			return url.getProtocol() + "://" + url.getHost() + "/";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 	
 	/**

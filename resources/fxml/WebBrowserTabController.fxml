@@ -42,6 +42,21 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <Button fx:id="reloadButton" mnemonicParsing="false" style="-fx-background-radius: 0;">
+                                 <graphic>
+                                    <ImageView fitWidth="18.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../image/refresh.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Reload Web Site" />
+                                 </tooltip>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                               <Button fx:id="forwardButton" mnemonicParsing="false" style="-fx-background-radius: 0 45 45 0;">
                                  <graphic>
                                     <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -68,36 +83,18 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Button fx:id="addOrRemoveBookMark" contentDisplay="GRAPHIC_ONLY" disable="true" layoutX="431.0" layoutY="10.0" mnemonicParsing="false" text="Go">
-                           <tooltip>
-                              <Tooltip text="Add/Remove from Bookmarks" />
-                           </tooltip>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../image/smallStar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="reloadButton" mnemonicParsing="false">
+                        <JFXButton contentDisplay="GRAPHIC_ONLY" text=" ">
                            <graphic>
                               <ImageView fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../image/reload.png" />
+                                    <Image url="@../image/Settings-32.png" />
                                  </image>
                               </ImageView>
                            </graphic>
-                           <tooltip>
-                              <Tooltip text="Reload Web Site" />
-                           </tooltip>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                        </Button>
+                        </JFXButton>
                         <ComboBox fx:id="searchEngineComboBox" prefHeight="31.0" prefWidth="152.0" promptText="search engine">
                            <cursor>
                               <Cursor fx:constant="HAND" />

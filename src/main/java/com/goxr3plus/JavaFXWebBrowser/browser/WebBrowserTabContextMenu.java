@@ -1,4 +1,4 @@
-package main.java.com.goxr3plus.JavaFXWebBrowser.browser;
+package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import main.java.com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 public class WebBrowserTabContextMenu extends ContextMenu {
 	
