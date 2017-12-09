@@ -10,6 +10,11 @@
 [contributors-url]: https://github.com/goxr3plus/JavaFX-Web-Browser/graphs/contributors
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 
+# Youtube tutorial 
+[![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
+
+Repository of tutorial -> https://github.com/goxr3plus/JavaFXBrowserOverlay
+
 # From version V3.0.0 it is completely embeddable!!!
 
 What that means ? Well you can download the jar file with Maven , Gradle etc ( the depencities will come along ) and use it inside your application . 
@@ -81,9 +86,3 @@ Donwload latest prebuild zip folder V3.1.0 [here](https://github.com/goxr3plus/J
 
 ---
 
-# Demostration of the latest version 
-[![video](http://img.youtube.com/vi/fAFT7Vsm16o/0.jpg)](https://www.youtube.com/watch?v=fAFT7Vsm16o)
-
-
-# Youtube Video Tutorial
-[![Tutorial](http://img.youtube.com/vi/K7TH206PX0I/0.jpg)](https://www.youtube.com/watch?v=K7TH206PX0I)
