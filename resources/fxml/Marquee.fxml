@@ -8,7 +8,7 @@
   <children>
      <Text fx:id="text" layoutX="5.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Stopped" />
   </children>
-  <clip>
+ <!--  <clip>
      <Rectangle width="${root.width}" height="${root.height}"/>
-  </clip>
+  </clip> -->
 </fx:root>
