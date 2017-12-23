@@ -1,7 +1,7 @@
 /*
  * 
  */
-package main.java.com.goxr3plus.javafxwebbrowser.browser;
+package com.goxr3plus.JavaFXWebBrowser.browser;
 
 import java.util.List;
 import java.util.SortedSet;

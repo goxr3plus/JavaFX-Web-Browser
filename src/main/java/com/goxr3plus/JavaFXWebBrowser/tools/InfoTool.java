@@ -1,15 +1,16 @@
 /*
  * 
  */
-package main.java.com.goxr3plus.javafxwebbrowser.tools;
+package com.goxr3plus.JavaFXWebBrowser.tools;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.goxr3plus.JavaFXWebBrowser.application.Main;
+
 import javafx.scene.image.Image;
-import main.java.com.goxr3plus.javafxwebbrowser.application.Main;
 
 /**
  * Provides useful methods for retrieving informations.
