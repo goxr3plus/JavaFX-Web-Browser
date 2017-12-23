@@ -177,6 +177,18 @@ public class WebBrowserTabController extends StackPane {
 					facIconImageView.setImage(null);
 				}
 			}
+			else if (newState == Worker.State.CANCELLED) {
+				// download detected
+				String url = webEngine.getLocation();
+				logger.info("download url: "+url);
+//                 try{
+//                     Download download = new Download(webEngine.getLocation());
+//                     Thread t = new Thread(download);
+//                     t.start();
+//                 }catch(Exception ex){
+//                     logger.log(Level.SEVERE, "download", ex);
+//                 }
+			}
 			
 		});
 		webEngine.setOnError(error -> checkForInternetConnection());
