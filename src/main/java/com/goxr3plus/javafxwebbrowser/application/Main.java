@@ -8,10 +8,10 @@
  * and this list of conditions without modification.
  */
 
-package com.goxr3plus.JavaFXWebBrowser.application;
+package com.goxr3plus.javafxwebbrowser.application;
 
-import com.goxr3plus.JavaFXWebBrowser.browser.WebBrowserController;
-import com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import com.goxr3plus.javafxwebbrowser.browser.WebBrowserController;
+import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

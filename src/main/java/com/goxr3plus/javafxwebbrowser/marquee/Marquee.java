@@ -1,8 +1,8 @@
-package com.goxr3plus.JavaFXWebBrowser.marquee;
+package com.goxr3plus.javafxwebbrowser.marquee;
 
 import java.io.IOException;
 
-import com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

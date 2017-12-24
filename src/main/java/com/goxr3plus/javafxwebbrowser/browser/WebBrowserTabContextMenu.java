@@ -1,10 +1,10 @@
-package com.goxr3plus.JavaFXWebBrowser.browser;
+package com.goxr3plus.javafxwebbrowser.browser;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,7 +1,7 @@
 /**
  * TODO LISENSE
  */
-package com.goxr3plus.JavaFXWebBrowser.browser;
+package com.goxr3plus.javafxwebbrowser.browser;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXML;

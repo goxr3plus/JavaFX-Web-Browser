@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.goxr3plus.JavaFXWebBrowser.browser;
+package com.goxr3plus.javafxwebbrowser.browser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 
 import org.apache.commons.validator.routines.UrlValidator;
 
-import com.goxr3plus.JavaFXWebBrowser.marquee.Marquee;
-import com.goxr3plus.JavaFXWebBrowser.tools.InfoTool;
+import com.goxr3plus.javafxwebbrowser.marquee.Marquee;
+import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
 import commons.javafx.webbrowser.browser.SearchEngineComboBox;
