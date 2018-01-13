@@ -19,7 +19,7 @@ import com.goxr3plus.javafxwebbrowser.marquee.Marquee;
 import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
-import commons.javafx.webbrowser.browser.SearchEngineComboBox;
+//import commons.javafx.webbrowser.browser.SearchEngineComboBox;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
@@ -33,6 +33,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
@@ -63,38 +64,36 @@ public class WebBrowserTabController extends StackPane {
 	
 	//------------------------------------------------------------
 	
-	@FXML
-	private BorderPane borderPane;
-	
-	@FXML
-	private Button backwardButton;
-	
-	@FXML
-	private Button forwardButton;
-	
-	@FXML
-	private TextField searchBar;
-	
-	@FXML
-	private Button goButton;
-	
-	@FXML
-	private Button addOrRemoveBookMark;
-	
-	@FXML
-	private Button reloadButton;
-	
-	@FXML
-	private SearchEngineComboBox searchEngineComboBox;
-	
-	@FXML
-	private WebView webView;
-	
-	@FXML
-	private VBox errorPane;
-	
-	@FXML
-	private JFXButton tryAgain;
+
+    @FXML
+    private BorderPane borderPane;
+
+    @FXML
+    private Button backwardButton;
+
+    @FXML
+    private Button reloadButton;
+
+    @FXML
+    private Button forwardButton;
+
+    @FXML
+    private TextField searchBar;
+
+    @FXML
+    private ComboBox<String> searchEngineComboBox;
+
+    @FXML
+    private Button goButton;
+
+    @FXML
+    private WebView webView;
+
+    @FXML
+    private VBox errorPane;
+
+    @FXML
+    private JFXButton tryAgain;
 	
 	// -------------------------------------------------------------
 	
@@ -287,14 +286,16 @@ public class WebBrowserTabController extends StackPane {
 						webBrowserController.createNewTab(getHistory().getEntries().get(getHistory().getCurrentIndex() + 1).getUrl()).getTab());
 		});
 
-		searchEngineComboBox.init();
+		//searchEngineComboBox
+		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
+		searchEngineComboBox.getSelectionModel().select(0);	
+
 		
 		//Load the website
 		loadWebSite(firstWebSite);
 	}
 	
 	private Object favIconDownloader() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -315,6 +316,35 @@ public class WebBrowserTabController extends StackPane {
 		}
 	}
 	
+	
+	/**
+	 * Return the Search Url for the Search Provider For example for `Google` returns `https://www.google.com/search?q=`
+	 * 
+	 * @param searchProvider
+	 * @return The Search Engine Url
+	 */
+	public String getSearchEngineHomeUrl(String searchProvider) {
+		//Find
+		switch (searchProvider.toLowerCase()) {
+			case "bing":
+				return "http://www.bing.com";
+			case "duckduckgo":
+				return "https://duckduckgo.com";
+			case "yahoo":
+				return "https://search.yahoo.com";
+			default: //then google
+				return "https://www.google.com";
+		}
+	}
+
+	/** Get the default url home page for the selected search provider
+	 * @return Get the default url home page for the selected search provider
+	 */
+	public String getSelectedEngineHomeUrl() {
+		return getSearchEngineHomeUrl(searchEngineComboBox.getSelectionModel().getSelectedItem());
+	}
+	
+	
 	/**
 	 * Loads the given website , either directly if the url is a valid WebSite Url or using a SearchEngine like Google
 	 * 
@@ -332,7 +362,7 @@ public class WebBrowserTabController extends StackPane {
 		//Load
 		try {
 			webEngine.load(
-					load != null ? load : searchEngineComboBox.getSelectedEngineHomeUrl() + URLEncoder.encode(searchBar.getText(), "UTF-8"));
+					load != null ? load : getSelectedEngineHomeUrl() + URLEncoder.encode(searchBar.getText(), "UTF-8"));
 		} catch (UnsupportedEncodingException ex) {
 			ex.printStackTrace();
 		}
@@ -343,7 +373,7 @@ public class WebBrowserTabController extends StackPane {
 	 * Loads the default website
 	 */
 	public void loadDefaultWebSite() {
-		webEngine.load(searchEngineComboBox.getSelectedEngineHomeUrl());
+		webEngine.load(getSelectedEngineHomeUrl());
 	}
 	
 	/**

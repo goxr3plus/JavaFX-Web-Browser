@@ -34,8 +34,7 @@ public class SearchEngineComboBox extends ComboBox<String>{
 	 * @return Get the default url home page for the selected search provider
 	 */
 	public String getSelectedEngineHomeUrl() {
-		String searchProvider = getSelectionModel().getSelectedItem();
-		return getSearchEngineHomeUrl(searchProvider);
+		return getSearchEngineHomeUrl(getSelectionModel().getSelectedItem());
 	}
 
 	public void init() {

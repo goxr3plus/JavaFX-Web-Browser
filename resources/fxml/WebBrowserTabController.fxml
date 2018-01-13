@@ -16,7 +16,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
-<?import commons.javafx.webbrowser.browser.SearchEngineComboBox?>
+
+<!-- <?import commons.javafx.webbrowser.browser.SearchEngineComboBox?> -->
 
 <fx:root prefHeight="448.0" prefWidth="667.0" stylesheets="@../css/application.css" type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -74,6 +75,11 @@
                                  </cursor>
                               </Button>
                               <TextField fx:id="searchBar" promptText="Search..." style="-fx-background-radius: 45;" styleClass="jfx-text-area" HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="searchEngineComboBox" promptText="Search Engine">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ComboBox>
                               <Button fx:id="goButton" mnemonicParsing="false" style="-fx-background-radius: 0 45 45 0;" text="Go">
                                  <tooltip>
                                     <Tooltip text="Load the Web Site" />
@@ -84,11 +90,11 @@
                               </Button>
                            </children>
                         </HBox>
-                        <SearchEngineComboBox fx:id="searchEngineComboBox" prefHeight="31.0" prefWidth="152.0" promptText="search engine">
+<!--                         <SearchEngineComboBox fx:id="searchEngineComboBox" prefHeight="31.0" prefWidth="152.0" promptText="search engine">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                        </SearchEngineComboBox>
+                        </SearchEngineComboBox> -->
                      </children>
                   </HBox>
                </children>
