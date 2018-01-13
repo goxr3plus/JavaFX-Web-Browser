@@ -1,7 +1,7 @@
 /**
  * TODO LISENSE
  */
-package com.goxr3plus.javafxwebbrowser.browser;
+package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXML;
@@ -19,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 /**
  * @author GOXR3PLUS

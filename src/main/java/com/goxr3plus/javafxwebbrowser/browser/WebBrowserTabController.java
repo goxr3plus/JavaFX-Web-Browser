@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.goxr3plus.javafxwebbrowser.browser;
+package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,8 +15,6 @@ import java.util.logging.Logger;
 
 import org.apache.commons.validator.routines.UrlValidator;
 
-import com.goxr3plus.javafxwebbrowser.marquee.Marquee;
-import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.application.Platform;
@@ -48,6 +46,11 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.AutoCompleteTextField;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserController;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserTabContextMenu;
+import main.java.com.goxr3plus.javafxwebbrowser.marquee.Marquee;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
@@ -287,7 +290,7 @@ public class WebBrowserTabController extends StackPane {
 
 		//searchEngineComboBox
 		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
-		searchEngineComboBox.getSelectionModel().select(0);	
+		searchEngineComboBox.getSelectionModel().select(1);	
 
 		
 		//Load the website
