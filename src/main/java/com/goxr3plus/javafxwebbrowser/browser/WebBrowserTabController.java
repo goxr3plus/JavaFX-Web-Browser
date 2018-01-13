@@ -19,7 +19,6 @@ import com.goxr3plus.javafxwebbrowser.marquee.Marquee;
 import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
-//import commons.javafx.webbrowser.browser.SearchEngineComboBox;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
@@ -295,9 +294,6 @@ public class WebBrowserTabController extends StackPane {
 		loadWebSite(firstWebSite);
 	}
 	
-	private Object favIconDownloader() {
-		return null;
-	}
 
 	/**
 	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
