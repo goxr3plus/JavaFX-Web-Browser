@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
+<?import commons.javafx.webbrowser.browser.SearchEngineComboBox?>
 
 <fx:root prefHeight="448.0" prefWidth="667.0" stylesheets="@../css/application.css" type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -84,10 +85,11 @@
                               </Button>
                            </children>
                         </HBox>
-                        <ComboBox fx:id="searchEngineComboBox" prefHeight="31.0" prefWidth="152.0" promptText="search engine">
+                        <SearchEngineComboBox fx:id="searchEngineComboBox" prefHeight="31.0" prefWidth="152.0" promptText="search engine">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></ComboBox>
+                           </cursor>
+                        </SearchEngineComboBox>
                      </children>
                   </HBox>
                </children>

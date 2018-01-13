@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main.java.com.goxr3plus.javafxwebbrowser.browser;
+package com.goxr3plus.javafxwebbrowser.browser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,19 +15,24 @@ import java.util.logging.Logger;
 
 import org.apache.commons.validator.routines.UrlValidator;
 
+import com.goxr3plus.javafxwebbrowser.marquee.Marquee;
+import com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import com.jfoenix.controls.JFXButton;
 
+import commons.javafx.webbrowser.browser.SearchEngineComboBox;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
@@ -43,8 +48,6 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
-import main.java.com.goxr3plus.javafxwebbrowser.marquee.Marquee;
-import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
@@ -82,7 +85,7 @@ public class WebBrowserTabController extends StackPane {
 	private Button reloadButton;
 	
 	@FXML
-	private ComboBox<String> searchEngineComboBox;
+	private SearchEngineComboBox searchEngineComboBox;
 	
 	@FXML
 	private WebView webView;
@@ -157,28 +160,9 @@ public class WebBrowserTabController extends StackPane {
 		webEngine = webView.getEngine();
 		webEngine.getLoadWorker().exceptionProperty().addListener(error -> checkForInternetConnection());
 		//Add listener to the WebEngine
-		webEngine.getLoadWorker().stateProperty().addListener((observable , oldState , newState) -> {
-			if (newState == Worker.State.SUCCEEDED) {
-				try {
-					//Determine the full url
-					String favIconFullURL = getHostName(webEngine.getLocation()) + "favicon.ico";
-					//System.out.println(favIconFullURL)
-					
-					//Create HttpURLConnection 
-					HttpURLConnection httpcon = (HttpURLConnection) new URL(favIconFullURL).openConnection();
-					httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
-					List<BufferedImage> image = ICODecoder.read(httpcon.getInputStream());
-					
-					//Set the favicon
-					facIconImageView.setImage(SwingFXUtils.toFXImage(image.get(0), null));
-					
-				} catch (Exception ex) {
-					//ex.printStackTrace()
-					facIconImageView.setImage(null);
-				}
-			}
-			
-		});
+		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider()); 
+		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector()); 
+		
 		webEngine.setOnError(error -> checkForInternetConnection());
 		
 		//handle pop up windows
@@ -289,14 +273,18 @@ public class WebBrowserTabController extends StackPane {
 				webBrowserController.getTabPane().getTabs().add(webBrowserController.getTabPane().getTabs().indexOf(tab) + 1,
 						webBrowserController.createNewTab(getHistory().getEntries().get(getHistory().getCurrentIndex() + 1).getUrl()).getTab());
 		});
-		
-		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
-		searchEngineComboBox.getSelectionModel().select(1);
+
+		searchEngineComboBox.init();
 		
 		//Load the website
 		loadWebSite(firstWebSite);
 	}
 	
+	private Object favIconDownloader() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
 	 * https://duckduckgo.com
@@ -311,46 +299,6 @@ public class WebBrowserTabController extends StackPane {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
-		}
-	}
-	
-	/**
-	 * Return the Search Url for the Search Provider For example for `Google` returns `https://www.google.com/search?q=`
-	 * 
-	 * @param searchProvider
-	 * @return The Search Engine Url
-	 */
-	public String getSearchEngineSearchUrl(String searchProvider) {
-		//Find
-		switch (searchProvider.toLowerCase()) {
-			case "bing":
-				return "http://www.bing.com/search?q=";
-			case "duckduckgo":
-				return "https://duckduckgo.com/?q=";
-			case "yahoo":
-				return "https://search.yahoo.com/search?p=";
-			default: //then google
-				return "https://www.google.com/search?q=";
-		}
-	}
-	
-	/**
-	 * Return the Search Url for the Search Provider For example for `Google` returns `https://www.google.com/search?q=`
-	 * 
-	 * @param searchProvider
-	 * @return The Search Engine Url
-	 */
-	public String getSearchEngineHomeUrl(String searchProvider) {
-		//Find
-		switch (searchProvider.toLowerCase()) {
-			case "bing":
-				return "http://www.bing.com";
-			case "duckduckgo":
-				return "https://duckduckgo.com";
-			case "yahoo":
-				return "https://search.yahoo.com";
-			default: //then google
-				return "https://www.google.com";
 		}
 	}
 	
@@ -371,7 +319,7 @@ public class WebBrowserTabController extends StackPane {
 		//Load
 		try {
 			webEngine.load(
-					load != null ? load : getSearchEngineSearchUrl(searchEngineComboBox.getSelectionModel().getSelectedItem()) + URLEncoder.encode(searchBar.getText(), "UTF-8"));
+					load != null ? load : searchEngineComboBox.getSelectedEngineHomeUrl() + URLEncoder.encode(searchBar.getText(), "UTF-8"));
 		} catch (UnsupportedEncodingException ex) {
 			ex.printStackTrace();
 		}
@@ -382,7 +330,7 @@ public class WebBrowserTabController extends StackPane {
 	 * Loads the default website
 	 */
 	public void loadDefaultWebSite() {
-		webEngine.load(getSearchEngineHomeUrl(searchEngineComboBox.getSelectionModel().getSelectedItem()));
+		webEngine.load(searchEngineComboBox.getSelectedEngineHomeUrl());
 	}
 	
 	/**
@@ -466,5 +414,50 @@ public class WebBrowserTabController extends StackPane {
 	public void setHistory(WebHistory history) {
 		this.history = history;
 	}
+	///////////////////////////// INNER CLASSES ////////////////////////////////
+	public class FavIconProvider implements ChangeListener<State> {
+
+		@Override
+		public void changed(ObservableValue<? extends State> observable, State oldState, State newState) {
+			if (newState == Worker.State.SUCCEEDED) {
+				try {
+					//Determine the full url
+					String favIconFullURL = getHostName(webEngine.getLocation()) + "favicon.ico";
+					//System.out.println(favIconFullURL)
+					
+					//Create HttpURLConnection 
+					HttpURLConnection httpcon = (HttpURLConnection) new URL(favIconFullURL).openConnection();
+					httpcon.addRequestProperty("User-Agent", "Mozilla/5.0");
+					List<BufferedImage> image = ICODecoder.read(httpcon.getInputStream());
+					
+					//Set the favicon
+					facIconImageView.setImage(SwingFXUtils.toFXImage(image.get(0), null));
+					
+				} catch (Exception ex) {
+					//ex.printStackTrace()
+					facIconImageView.setImage(null);
+				}
+			}
+		}		
+	}// FavIconProvider
 	
+	public class DownloadDetector implements ChangeListener<State> {
+
+		@Override
+		public void changed(ObservableValue<? extends State> observable, State oldState, State newState) {
+			if (newState == Worker.State.CANCELLED) {
+			// download detected
+			String url = webEngine.getLocation();
+			logger.info("download url: "+url);
+//             try{
+//                 Download download = new Download(webEngine.getLocation());
+//                 Thread t = new Thread(download);
+//                 t.start();
+//             }catch(Exception ex){
+//                 logger.log(Level.SEVERE, "download", ex);
+//             }
+			}
+		}		
+	}// DownloadDetector
+
 }
