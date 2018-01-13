@@ -20,7 +20,7 @@
 
 	<build>
 		<finalName>JavaFXWebBrowser-${project.version}</finalName>
-		<sourceDirectory>src/main/java</sourceDirectory>
+		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
 				<directory>resources</directory>
