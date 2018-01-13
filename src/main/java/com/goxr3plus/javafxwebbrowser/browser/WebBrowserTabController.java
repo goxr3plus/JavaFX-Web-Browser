@@ -33,6 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -96,6 +97,9 @@ public class WebBrowserTabController extends StackPane {
 
     @FXML
     private JFXButton tryAgain;
+    
+	@FXML
+	private ProgressIndicator tryAgainIndicator;
 	
 	// -------------------------------------------------------------
 	
@@ -429,13 +433,19 @@ public class WebBrowserTabController extends StackPane {
 	 */
 	void checkForInternetConnection() {
 		
+		//tryAgainIndicator
+		tryAgainIndicator.setVisible(true);
+		
 		//Check for internet connection
 		Thread thread = new Thread(() -> {
 			boolean hasInternet = InfoTool.isReachableByPing("www.google.com");
 			Platform.runLater(() -> {
 				errorPane.setVisible(!hasInternet);
-				if (hasInternet)
-					reloadWebSite();
+				tryAgainIndicator.setVisible(false);
+				
+				//Reload the website if it has internet
+				if(hasInternet)
+					reloadWebSite();	
 			});
 		}, "Internet Connection Tester Thread");
 		thread.setDaemon(true);
