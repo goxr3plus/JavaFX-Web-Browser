@@ -1,6 +1,7 @@
 package commons.javafx.webbrowser.browser;
 
 import javafx.scene.control.ComboBox;
+
 /**
  * Search engine combo box and its utility methods.
  * 
@@ -29,6 +30,9 @@ public class SearchEngineComboBox extends ComboBox<String>{
 		}
 	}
 
+	/** Get the default url home page for the selected search provider
+	 * @return Get the default url home page for the selected search provider
+	 */
 	public String getSelectedEngineHomeUrl() {
 		String searchProvider = getSelectionModel().getSelectedItem();
 		return getSearchEngineHomeUrl(searchProvider);

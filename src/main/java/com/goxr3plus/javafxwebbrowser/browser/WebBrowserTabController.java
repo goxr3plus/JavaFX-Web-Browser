@@ -159,9 +159,22 @@ public class WebBrowserTabController extends StackPane {
 		//-------------------WebEngine------------------------
 		webEngine = webView.getEngine();
 		webEngine.getLoadWorker().exceptionProperty().addListener(error -> checkForInternetConnection());
+		
 		//Add listener to the WebEngine
 		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider()); 
 		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector()); 
+		webEngine.getLoadWorker().stateProperty().addListener((observable,oldState,newState)->{
+			if (newState == Worker.State.SUCCEEDED) {
+				
+				//Check for error pane
+				errorPane.setVisible(false);
+				
+			}else if(newState  == Worker.State.FAILED) {
+				
+				//Check for error pane
+				errorPane.setVisible(true);
+			}
+		});
 		
 		webEngine.setOnError(error -> checkForInternetConnection());
 		
