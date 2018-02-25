@@ -67,37 +67,36 @@ public class WebBrowserTabController extends StackPane {
 	
 	//------------------------------------------------------------
 	
-
-    @FXML
-    private BorderPane borderPane;
-
-    @FXML
-    private Button backwardButton;
-
-    @FXML
-    private Button reloadButton;
-
-    @FXML
-    private Button forwardButton;
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private ComboBox<String> searchEngineComboBox;
-
-    @FXML
-    private Button goButton;
-
-    @FXML
-    private WebView webView;
-
-    @FXML
-    private VBox errorPane;
-
-    @FXML
-    private JFXButton tryAgain;
-    
+	@FXML
+	private BorderPane borderPane;
+	
+	@FXML
+	private Button backwardButton;
+	
+	@FXML
+	private Button reloadButton;
+	
+	@FXML
+	private Button forwardButton;
+	
+	@FXML
+	private TextField searchBar;
+	
+	@FXML
+	private ComboBox<String> searchEngineComboBox;
+	
+	@FXML
+	private Button goButton;
+	
+	@FXML
+	private WebView webView;
+	
+	@FXML
+	private VBox errorPane;
+	
+	@FXML
+	private JFXButton tryAgain;
+	
 	@FXML
 	private ProgressIndicator tryAgainIndicator;
 	
@@ -163,25 +162,31 @@ public class WebBrowserTabController extends StackPane {
 		
 		//-------------------WebEngine------------------------
 		webEngine = webView.getEngine();
-		webEngine.getLoadWorker().exceptionProperty().addListener(error -> checkForInternetConnection());
+		webEngine.getLoadWorker().exceptionProperty().addListener(error -> {
+			//System.out.println("WebEngine exception occured" + error.toString())
+			checkForInternetConnection();
+		});
 		
 		//Add listener to the WebEngine
-		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider()); 
-		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector()); 
-		webEngine.getLoadWorker().stateProperty().addListener((observable,oldState,newState)->{
+		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider());
+		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector());
+		webEngine.getLoadWorker().stateProperty().addListener((observable , oldState , newState) -> {
 			if (newState == Worker.State.SUCCEEDED) {
 				
 				//Check for error pane
 				errorPane.setVisible(false);
 				
-			}else if(newState  == Worker.State.FAILED) {
+			} else if (newState == Worker.State.FAILED) {
 				
 				//Check for error pane
 				errorPane.setVisible(true);
 			}
 		});
 		
-		webEngine.setOnError(error -> checkForInternetConnection());
+		webEngine.setOnError(error -> {
+			//System.out.println("WebEngine error occured")
+			checkForInternetConnection();
+		});
 		
 		//handle pop up windows
 		webEngine.setCreatePopupHandler(l -> webBrowserController.createAndAddNewTab().getWebView().getEngine());
@@ -291,17 +296,15 @@ public class WebBrowserTabController extends StackPane {
 				webBrowserController.getTabPane().getTabs().add(webBrowserController.getTabPane().getTabs().indexOf(tab) + 1,
 						webBrowserController.createNewTab(getHistory().getEntries().get(getHistory().getCurrentIndex() + 1).getUrl()).getTab());
 		});
-
+		
 		//searchEngineComboBox
 		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
-		searchEngineComboBox.getSelectionModel().select(1);	
-
+		searchEngineComboBox.getSelectionModel().select(1);
 		
 		//Load the website
 		loadWebSite(firstWebSite);
 	}
 	
-
 	/**
 	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
 	 * https://duckduckgo.com
@@ -318,7 +321,6 @@ public class WebBrowserTabController extends StackPane {
 			return "";
 		}
 	}
-	
 	
 	/**
 	 * Return the Search Url for the Search Provider For example for `Google` returns `https://www.google.com/search?q=`
@@ -339,14 +341,15 @@ public class WebBrowserTabController extends StackPane {
 				return "https://www.google.com";
 		}
 	}
-
-	/** Get the default url home page for the selected search provider
+	
+	/**
+	 * Get the default url home page for the selected search provider
+	 * 
 	 * @return Get the default url home page for the selected search provider
 	 */
 	public String getSelectedEngineHomeUrl() {
 		return getSearchEngineHomeUrl(searchEngineComboBox.getSelectionModel().getSelectedItem());
 	}
-	
 	
 	/**
 	 * Loads the given website , either directly if the url is a valid WebSite Url or using a SearchEngine like Google
@@ -364,8 +367,14 @@ public class WebBrowserTabController extends StackPane {
 		
 		//Load
 		try {
-			webEngine.load(
-					load != null ? load : getSelectedEngineHomeUrl() + URLEncoder.encode(searchBar.getText(), "UTF-8"));
+			
+			//Find the final website
+			String finalWebsite = ( load != null ) ? load
+					: getSelectedEngineHomeUrl() + ( searchBar.getText().isEmpty() ? "" : "//" + URLEncoder.encode(searchBar.getText(), "UTF-8") );
+			
+			//Load it 
+			webEngine.load(finalWebsite);
+			
 		} catch (UnsupportedEncodingException ex) {
 			ex.printStackTrace();
 		}
@@ -440,12 +449,16 @@ public class WebBrowserTabController extends StackPane {
 		Thread thread = new Thread(() -> {
 			boolean hasInternet = InfoTool.isReachableByPing("www.google.com");
 			Platform.runLater(() -> {
+				
+				//Visibility of error pane
 				errorPane.setVisible(!hasInternet);
+				
+				//Visibility of Try Again Indicator
 				tryAgainIndicator.setVisible(false);
 				
 				//Reload the website if it has internet
-				if(hasInternet)
-					reloadWebSite();	
+				if (hasInternet)
+					reloadWebSite();
 			});
 		}, "Internet Connection Tester Thread");
 		thread.setDaemon(true);
@@ -466,11 +479,12 @@ public class WebBrowserTabController extends StackPane {
 	public void setHistory(WebHistory history) {
 		this.history = history;
 	}
+	
 	///////////////////////////// INNER CLASSES ////////////////////////////////
 	public class FavIconProvider implements ChangeListener<State> {
-
+		
 		@Override
-		public void changed(ObservableValue<? extends State> observable, State oldState, State newState) {
+		public void changed(ObservableValue<? extends State> observable , State oldState , State newState) {
 			if (newState == Worker.State.SUCCEEDED) {
 				try {
 					//Determine the full url
@@ -490,26 +504,26 @@ public class WebBrowserTabController extends StackPane {
 					facIconImageView.setImage(null);
 				}
 			}
-		}		
+		}
 	}// FavIconProvider
 	
 	public class DownloadDetector implements ChangeListener<State> {
-
+		
 		@Override
-		public void changed(ObservableValue<? extends State> observable, State oldState, State newState) {
+		public void changed(ObservableValue<? extends State> observable , State oldState , State newState) {
 			if (newState == Worker.State.CANCELLED) {
-			// download detected
-			String url = webEngine.getLocation();
-			logger.info("download url: "+url);
-//             try{
-//                 Download download = new Download(webEngine.getLocation());
-//                 Thread t = new Thread(download);
-//                 t.start();
-//             }catch(Exception ex){
-//                 logger.log(Level.SEVERE, "download", ex);
-//             }
+				// download detected
+				String url = webEngine.getLocation();
+				logger.info("download url: " + url);
+				//             try{
+				//                 Download download = new Download(webEngine.getLocation());
+				//                 Thread t = new Thread(download);
+				//                 t.start();
+				//             }catch(Exception ex){
+				//                 logger.log(Level.SEVERE, "download", ex);
+				//             }
 			}
-		}		
+		}
 	}// DownloadDetector
-
+	
 }

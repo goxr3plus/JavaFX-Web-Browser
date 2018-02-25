@@ -89,6 +89,7 @@ public final class AutoCompleteTextField {
 		
 		boolean pass = true;
 		System.out.println(k.getName());
+		
 		// Not causing problems by these buttons
 		if (key.isControlDown() || k == KeyCode.BACK_SPACE || k == KeyCode.RIGHT || k == KeyCode.LEFT || k == KeyCode.DELETE || k == KeyCode.HOME || k == KeyCode.END
 				|| k == KeyCode.TAB) {
@@ -143,8 +144,8 @@ public final class AutoCompleteTextField {
 	}
 	
 	/**
-	 * <b> Warning with this method will lead to NullPointerException if the given SortedSet goes to null , i am using it when i have really big
-	 * TreeSets on my Application</b> <br>
+	 * <b> Warning with this method will lead to NullPointerException if the given SortedSet goes to null , i am using it when i have really big TreeSets
+	 * on my Application</b> <br>
 	 * 
 	 * Add auto completion capabilities to the given textField
 	 * 
