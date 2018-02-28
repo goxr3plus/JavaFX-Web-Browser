@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXButton;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
@@ -29,7 +30,11 @@ public class WebBrowserController extends StackPane {
 	/** The logger. */
 	private final Logger logger = Logger.getLogger(getClass().getName());
 	
+	public final static String VERSION = "Version 3.5.0";
+	
 	//------------------------------------------------------------
+	@FXML
+	private Button showVersion;
 	
 	@FXML
 	private TabPane tabPane;
@@ -68,6 +73,7 @@ public class WebBrowserController extends StackPane {
 		
 		//addTab
 		addTab.setOnAction(a -> createAndAddNewTab());
+		
 	}
 	
 	/**

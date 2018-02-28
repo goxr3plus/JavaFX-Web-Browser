@@ -11,11 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
+
 
 /**
  * When the screen element is not big enough to show the text then an animation will start automatically
@@ -23,24 +24,26 @@ import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
  * @author GOXR3PLUS
  *
  */
-public class Marquee extends Pane {
+public class FXMarquee extends Pane {
 	
 	@FXML
-	private Text text;
+	private Label text;
 	
 	// minimum distance to Pane bounds
 	private static final double OFFSET = 5;
 	
 	private Timeline timeline = new Timeline();
 	
+	private boolean animationAllowed = true;
+	
 	/**
 	 * Constructor
 	 */
-	public Marquee() {
+	public FXMarquee() {
 		
 		// FXMLLOADER
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(InfoTool.FXMLS + "Marquee.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(InfoTool.FXMLS + "FXMarquee.fxml"));
 			loader.setController(this);
 			loader.setRoot(this);
 			loader.load();
@@ -63,7 +66,7 @@ public class Marquee extends Pane {
 		setClip(rectangle);
 		
 		// Text
-		text.setManaged(false);
+		//text.setManaged(false)
 		
 		startAnimation();
 	}
@@ -74,7 +77,7 @@ public class Marquee extends Pane {
 	 * @param value
 	 * @return this
 	 */
-	public Marquee setText(String value) {
+	public FXMarquee setText(String value) {
 		
 		// text
 		text.setText(value);
@@ -133,17 +136,28 @@ public class Marquee extends Pane {
 		
 		// listen to bound changes of the elements to start/stop the
 		// animation
-		InvalidationListener listener = o -> {
+		InvalidationListener listener = o -> checkAnimationValidity(animationAllowed);
+		
+		text.layoutBoundsProperty().addListener(listener);
+		widthProperty().addListener(listener);
+		
+	}
+	
+	/**
+	 * Starts or stops the animation based on the given boolean
+	 */
+	public void checkAnimationValidity(boolean continueAnimation) {
+		animationAllowed = continueAnimation;
+		if (animationAllowed) {
 			double textWidth = text.getLayoutBounds().getWidth();
 			double paneWidth = getWidth();
 			text.setLayoutX(5);
 			if (textWidth + 2 * OFFSET > paneWidth && timeline.getStatus() != Animation.Status.RUNNING)
 				timeline.play();
-		};
-		
-		text.layoutBoundsProperty().addListener(listener);
-		widthProperty().addListener(listener);
-		
+		} else {
+			text.setLayoutX(OFFSET);
+			timeline.stop();
+		}
 	}
 	
 }

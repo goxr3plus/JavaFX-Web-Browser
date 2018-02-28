@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import org.apache.commons.validator.routines.UrlValidator;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -29,9 +30,12 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tab;
@@ -47,10 +51,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
-import main.java.com.goxr3plus.javafxwebbrowser.browser.AutoCompleteTextField;
-import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserController;
-import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserTabContextMenu;
-import main.java.com.goxr3plus.javafxwebbrowser.marquee.Marquee;
+import javafx.stage.StageStyle;
+import main.java.com.goxr3plus.javafxwebbrowser.marquee.FXMarquee;
 import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
 
@@ -71,6 +73,9 @@ public class WebBrowserTabController extends StackPane {
 	private BorderPane borderPane;
 	
 	@FXML
+	private WebView webView;
+	
+	@FXML
 	private Button backwardButton;
 	
 	@FXML
@@ -89,7 +94,10 @@ public class WebBrowserTabController extends StackPane {
 	private Button goButton;
 	
 	@FXML
-	private WebView webView;
+	private JFXCheckBox requestMobileSite;
+	
+	@FXML
+	private MenuItem about;
 	
 	@FXML
 	private VBox errorPane;
@@ -190,6 +198,9 @@ public class WebBrowserTabController extends StackPane {
 		
 		//handle pop up windows
 		webEngine.setCreatePopupHandler(l -> webBrowserController.createAndAddNewTab().getWebView().getEngine());
+		//System.out.println(webEngine.getUserAgent())
+		webEngine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0");
+		//System.out.println(webEngine.getUserAgent());
 		
 		//History
 		setHistory(webEngine.getHistory());
@@ -218,7 +229,7 @@ public class WebBrowserTabController extends StackPane {
 		//label.textProperty().bind(Bindings.max(0, indicator.progressProperty()).multiply(100.00).asString("%.02f %%"))
 		// text.visibleProperty().bind(library.getSmartController().inputService.runningProperty())
 		
-		Marquee marquee = new Marquee();
+		FXMarquee marquee = new FXMarquee();
 		marquee.textProperty().bind(tab.getTooltip().textProperty());
 		
 		stack.getChildren().addAll(indicator, label);
@@ -301,8 +312,32 @@ public class WebBrowserTabController extends StackPane {
 		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
 		searchEngineComboBox.getSelectionModel().select(1);
 		
+		//requestMobileSite
+		requestMobileSite.selectedProperty().addListener((observable , oldValue , newValue) -> {
+			if (newValue)
+				webEngine.setUserAgent("Mozilla/5.0 (Android 6.1; Mobile; rv:58.0) Gecko/20100101 Firefox/58.0");
+			else
+				webEngine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0");
+			
+			System.out.println(webEngine.getUserAgent());
+			
+			//Reload the website
+			reloadWebSite();
+		});
+		
 		//Load the website
 		loadWebSite(firstWebSite);
+		
+		//showVersion
+		about.setOnAction(a -> {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.initStyle(StageStyle.UTILITY);
+			alert.setTitle("JavaFX Browser");
+			alert.setHeaderText(null);
+			alert.setContentText("Browser Version :" + WebBrowserController.VERSION+"\n"+"Created by: GOXR3PLUS STUDIO");
+			
+			alert.showAndWait();
+		});
 	}
 	
 	/**
