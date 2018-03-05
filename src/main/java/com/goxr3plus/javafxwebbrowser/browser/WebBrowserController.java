@@ -30,7 +30,9 @@ public class WebBrowserController extends StackPane {
 	/** The logger. */
 	private final Logger logger = Logger.getLogger(getClass().getName());
 	
-	public final static String VERSION = "Version 3.5.0";
+	public static final String VERSION = "Version 3.5.0";
+	
+	public static boolean MOVING_TITLES_ENABLED = true;
 	
 	//------------------------------------------------------------
 	@FXML
@@ -181,6 +183,16 @@ public class WebBrowserController extends StackPane {
 	}
 	
 	/**
+	 * Sets the moving titles enabled or disabled on all the tabs
+	 * 
+	 * @param value
+	 */
+	public void setMovingTitlesEnabled(boolean value) {
+		MOVING_TITLES_ENABLED = value;
+		tabPane.getTabs().forEach(tab -> ( (WebBrowserTabController) tab.getContent() ).setMovingTitleEnabled(value));
+	}
+	
+	/**
 	 * This is a list holding all the proposed websites for the user
 	 */
 	
@@ -264,20 +276,7 @@ public class WebBrowserController extends StackPane {
 			"https://www.gismeteo.ru", "https://www.github.com", "https://www.github.io", "https://www.givemesport.com", "https://www.gizmodo.com", "https://www.glassdoor.com",
 			"https://www.globo.com", "https://www.gmarket.co.kr", "https://www.gmw.cn", "https://www.gmx.net", "https://www.gnu.org", "https://www.go.com", "https://www.goal.com",
 			"https://www.godaddy.com", "https://www.gofundme.com", "https://www.gogoanime.io", "https://www.gomovies.to", "https://www.gongchang.com", "https://www.goo.gl",
-			"https://www.goo.ne.jp", "https://www.goodreads.com", "https://www.google.ae", "https://www.google.at", "https://www.google.az", "https://www.google.be",
-			"https://www.google.bg", "https://www.google.by", "https://www.google.ca", "https://www.google.ch", "https://www.google.cl", "https://www.google.cn",
-			"https://www.google.co.ao", "https://www.google.co.id", "https://www.google.co.il", "https://www.google.co.in", "https://www.google.co.jp", "https://www.google.co.kr",
-			"https://www.google.co.nz", "https://www.google.co.th", "https://www.google.co.uk", "https://www.google.co.ve", "https://www.google.co.za", "https://www.google.com",
-			"https://www.google.com.ar", "https://www.google.com.au", "https://www.google.com.br", "https://www.google.com.co", "https://www.google.com.do",
-			"https://www.google.com.ec", "https://www.google.com.eg", "https://www.google.com.gt", "https://www.google.com.hk", "https://www.google.com.kw",
-			"https://www.google.com.ly", "https://www.google.com.mm", "https://www.google.com.mx", "https://www.google.com.ng", "https://www.google.com.pe",
-			"https://www.google.com.ph", "https://www.google.com.pk", "https://www.google.com.sa", "https://www.google.com.sg", "https://www.google.com.tr",
-			"https://www.google.com.tw", "https://www.google.com.ua", "https://www.google.com.vn", "https://www.google.cz", "https://www.google.de", "https://www.google.dk",
-			"https://www.google.dz", "https://www.google.es", "https://www.google.fi", "https://www.google.fr", "https://www.google.gr", "https://www.google.hr",
-			"https://www.google.hu", "https://www.google.ie", "https://www.google.iq", "https://www.google.it", "https://www.google.kz", "https://www.google.lk",
-			"https://www.google.lt", "https://www.google.nl", "https://www.google.no", "https://www.google.pl", "https://www.google.pt", "https://www.google.ro",
-			"https://www.google.rs", "https://www.google.ru", "https://www.google.se", "https://www.google.si", "https://www.google.sk", "https://www.google.tm",
-			"https://www.google.tn", "https://www.googleusercontent.com", "https://www.googlevideo.com", "https://www.gotporn.com", "https://www.gov.uk", "https://www.gpo.gov",
+			"https://www.goo.ne.jp", "https://www.goodreads.com", "https://www.googleusercontent.com", "https://www.googlevideo.com", "https://www.gotporn.com", "https://www.gov.uk", "https://www.gpo.gov",
 			"https://www.grammarly.com", "https://www.gravatar.com", "https://www.grid.id", "https://www.groupon.com", "https://www.gsmarena.com", "https://www.guardian.co.uk",
 			"https://www.gutefrage.net", "https://www.gyazo.com", "https://www.haber7.com", "https://www.hamariweb.com", "https://www.hao123.com", "https://www.harvard.edu",
 			"https://www.hatena.ne.jp", "https://www.hatenablog.com", "https://www.hbr.org", "https://www.hclips.com", "https://www.hdfcbank.com", "https://www.hdzog.com",

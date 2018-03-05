@@ -17,7 +17,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
-
 /**
  * When the screen element is not big enough to show the text then an animation will start automatically
  * 
@@ -27,7 +26,7 @@ import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 public class FXMarquee extends Pane {
 	
 	@FXML
-	private Label text;
+	private Label label;
 	
 	// minimum distance to Pane bounds
 	private static final double OFFSET = 5;
@@ -80,7 +79,7 @@ public class FXMarquee extends Pane {
 	public FXMarquee setText(String value) {
 		
 		// text
-		text.setText(value);
+		label.setText(value);
 		
 		return this;
 	}
@@ -91,7 +90,7 @@ public class FXMarquee extends Pane {
 	 * @return The TextProperty
 	 */
 	public StringProperty textProperty() {
-		return text.textProperty();
+		return label.textProperty();
 	}
 	
 	/**
@@ -106,14 +105,14 @@ public class FXMarquee extends Pane {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				double textWidth = text.getLayoutBounds().getWidth();
+				double textWidth = label.getLayoutBounds().getWidth();
 				double paneWidth = getWidth();
-				double layoutX = text.getLayoutX();
+				double layoutX = label.getLayoutX();
 				
 				if (2 * OFFSET + textWidth <= paneWidth && layoutX >= OFFSET) {
 					// stop, if the pane is large enough and the position is
 					// correct
-					text.setLayoutX(OFFSET);
+					label.setLayoutX(OFFSET);
 					timeline.stop();
 				} else {
 					if ( ( rightMovement && layoutX >= OFFSET ) || ( !rightMovement && layoutX + textWidth + OFFSET <= paneWidth )) {
@@ -127,7 +126,7 @@ public class FXMarquee extends Pane {
 					} else {
 						layoutX -= 1;
 					}
-					text.setLayoutX(layoutX);
+					label.setLayoutX(layoutX);
 				}
 			}
 		});
@@ -138,7 +137,7 @@ public class FXMarquee extends Pane {
 		// animation
 		InvalidationListener listener = o -> checkAnimationValidity(animationAllowed);
 		
-		text.layoutBoundsProperty().addListener(listener);
+		label.layoutBoundsProperty().addListener(listener);
 		widthProperty().addListener(listener);
 		
 	}
@@ -149,15 +148,22 @@ public class FXMarquee extends Pane {
 	public void checkAnimationValidity(boolean continueAnimation) {
 		animationAllowed = continueAnimation;
 		if (animationAllowed) {
-			double textWidth = text.getLayoutBounds().getWidth();
+			double textWidth = label.getLayoutBounds().getWidth();
 			double paneWidth = getWidth();
-			text.setLayoutX(5);
+			label.setLayoutX(5);
 			if (textWidth + 2 * OFFSET > paneWidth && timeline.getStatus() != Animation.Status.RUNNING)
 				timeline.play();
 		} else {
-			text.setLayoutX(OFFSET);
+			label.setLayoutX(OFFSET);
 			timeline.stop();
 		}
+	}
+	
+	/**
+	 * @return the label
+	 */
+	public Label getLabel() {
+		return label;
 	}
 	
 }

@@ -108,6 +108,9 @@ public class WebBrowserTabController extends StackPane {
 	@FXML
 	private ProgressIndicator tryAgainIndicator;
 	
+	@FXML
+	private JFXCheckBox movingTitleAnimation;
+	
 	// -------------------------------------------------------------
 	
 	/** The engine. */
@@ -174,7 +177,9 @@ public class WebBrowserTabController extends StackPane {
 			//System.out.println("WebEngine exception occured" + error.toString())
 			checkForInternetConnection();
 		});
-		
+//		com.sun.javafx.webkit.WebConsoleListener
+//				.setDefaultListener((webView , message , lineNumber , sourceId) -> System.out.println("Console: [" + sourceId + ":" + lineNumber + "] " + message));
+//		
 		//Add listener to the WebEngine
 		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider());
 		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector());
@@ -199,7 +204,7 @@ public class WebBrowserTabController extends StackPane {
 		//handle pop up windows
 		webEngine.setCreatePopupHandler(l -> webBrowserController.createAndAddNewTab().getWebView().getEngine());
 		//System.out.println(webEngine.getUserAgent())
-		webEngine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0");
+		//webEngine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0");
 		//System.out.println(webEngine.getUserAgent());
 		
 		//History
@@ -256,6 +261,10 @@ public class WebBrowserTabController extends StackPane {
 		
 		// HBOX
 		HBox hBox = new HBox();
+		hBox.setOnMouseClicked(m -> {
+			if (m.getButton() == MouseButton.MIDDLE)
+				this.webBrowserController.removeTab(tab);
+		});
 		hBox.getChildren().addAll(facIconImageView, stack, marquee);
 		tab.setGraphic(hBox);
 		
@@ -325,6 +334,12 @@ public class WebBrowserTabController extends StackPane {
 			reloadWebSite();
 		});
 		
+		//movingTitleAnimation
+		movingTitleAnimation.selectedProperty().addListener((observable , oldValue , newValue) -> {
+			marquee.checkAnimationValidity(newValue);
+		});
+		movingTitleAnimation.setSelected(WebBrowserController.MOVING_TITLES_ENABLED);
+		
 		//Load the website
 		loadWebSite(firstWebSite);
 		
@@ -334,7 +349,7 @@ public class WebBrowserTabController extends StackPane {
 			alert.initStyle(StageStyle.UTILITY);
 			alert.setTitle("JavaFX Browser");
 			alert.setHeaderText(null);
-			alert.setContentText("Browser Version :" + WebBrowserController.VERSION+"\n"+"Created by: GOXR3PLUS STUDIO");
+			alert.setContentText("Browser Version :" + WebBrowserController.VERSION + "\n" + "Created by: GOXR3PLUS STUDIO");
 			
 			alert.showAndWait();
 		});
@@ -513,6 +528,15 @@ public class WebBrowserTabController extends StackPane {
 	 */
 	public void setHistory(WebHistory history) {
 		this.history = history;
+	}
+	
+	/**
+	 * Determines if the tab title will have a moving animation or not
+	 * 
+	 * @param value
+	 */
+	public void setMovingTitleEnabled(boolean value) {
+		movingTitleAnimation.setSelected(value);
 	}
 	
 	///////////////////////////// INNER CLASSES ////////////////////////////////
