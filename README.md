@@ -9,7 +9,7 @@
 
 [contributors-url]: https://github.com/goxr3plus/JavaFX-Web-Browser/graphs/contributors
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
-[browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.4.0
+[browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.5.0
 
 # Youtube tutorial 
 [![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
