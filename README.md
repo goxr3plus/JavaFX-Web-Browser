@@ -43,7 +43,7 @@ What that means ? Well you can download the jar file with Maven , Gradle etc ( t
 <dependency>
 	 <groupId>com.github.goxr3plus</groupId>
 	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.4.0</version>
+	 <version>V3.5.0</version>
 </dependency>
 ```
 
