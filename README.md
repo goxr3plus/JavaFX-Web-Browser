@@ -11,10 +11,22 @@
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 [browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.5.0
 
+# Hey friends follow the newest NetBeans tutorial here ->
+
+[![video](http://img.youtube.com/vi/5Y0ZUS7q_lI/0.jpg)](https://www.youtube.com/watch?v=5Y0ZUS7q_lI)
+
+Repository -> https://github.com/goxr3plus/Embedded-JavaFX-Web-Browser-Example-with-Maven
+
+----------------------------------------------------------------------------
+
+The below tutorial is Eclipse Version , older tutorial
+
 # Youtube tutorial 
 [![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
 
 Repository of tutorial -> https://github.com/goxr3plus/JavaFXBrowserOverlay
+
+-----------------------------------------------------------------------------
 
 # You can use this browser inside your JavaFX Application 
 
@@ -69,7 +81,7 @@ You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the 
 
 This project is part of XR3Player java Media Player , so i will continue to improve it in every update :) 
 
-Donwload latest prebuild zip folder V3.3.0 [here](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.1.0/JavaFXWebBrowser-3.3.0.zip)
+Donwload latest prebuild zip folder V3.5.0 [here](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.5.0/JavaFXWebBrowser-3.5.0-bin.zip)
 
 ![javafxwebbrowser](https://user-images.githubusercontent.com/20374208/32561528-18323d74-c4b5-11e7-9552-f7aeba4f9728.jpg)
 
