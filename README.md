@@ -1,5 +1,3 @@
-### PS Java 1.8.0_141 ++ Required ! Download Java 8 here : ( https://www.java.com/en/ )
-
 # JAVAFX-WEB-Browser 
 
 [![Latest Version](https://img.shields.io/github/release/goxr3plus/JavaFX-Web-Browser.svg?style=flat-square)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
@@ -9,7 +7,43 @@
 
 [contributors-url]: https://github.com/goxr3plus/JavaFX-Web-Browser/graphs/contributors
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
-[browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.5.0
+[browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
+
+### Add it to your project using JitPack :
+
+[Link][browser-jitpack-url]
+
+### Step 1. Add the JitPack repository to your build file
+``` XML
+<repositories>
+	<repository>
+	   <id>jitpack.io</id>
+	   <url>https://jitpack.io</url>
+        </repository>
+</repositories>
+```
+
+### Step 1. Add it as a dependency
+
+* JavaFX-Web-Browser for Java 9 - (9.x.x)
+
+``` XML
+<dependency>
+	 <groupId>com.github.goxr3plus</groupId>
+	 <artifactId>JavaFX-Web-Browser</artifactId>
+	 <version>V9.0.0</version>
+</dependency>
+```
+
+* JavaFX-Web-Browser for Java 8 - (3.x.x)
+
+``` XML
+<dependency>
+	 <groupId>com.github.goxr3plus</groupId>
+	 <artifactId>JavaFX-Web-Browser</artifactId>
+	 <version>V3.5.0</version>
+</dependency>
+```
 
 # Hey friends follow the newest NetBeans tutorial here ->
 
@@ -36,29 +70,6 @@ What that means ? Well you can download the jar file with Maven , Gradle etc ( t
 
 --> How you can embed it inside your application ? ( Use [JitPack.io][browser-jitpack-url] )
 
-### Add it to your project using JitPack :
-
-[Link][browser-jitpack-url]
-
-### Step 1. Add the JitPack repository to your build file
-``` XML
-<repositories>
-	<repository>
-	   <id>jitpack.io</id>
-	   <url>https://jitpack.io</url>
-        </repository>
-</repositories>
-```
-
-###  Step 2. Add the dependency
-``` XML
-<dependency>
-	 <groupId>com.github.goxr3plus</groupId>
-	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.5.0</version>
-</dependency>
-```
-
 Then from inside your code you can create an intance or multiple instances of Browser like this:
 
 ``` JAVA
@@ -80,6 +91,7 @@ Happy :) ?  Cause i am ...
 You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place . It took me 2 days to make it and it is here for you ready to test and improve it .
 
 This project is part of XR3Player java Media Player , so i will continue to improve it in every update :) 
+
 
 [Download](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.5.0/JavaFXWebBrowser-3.5.0-bin.zip) latest prebuild zip folder V3.5.0 
 
