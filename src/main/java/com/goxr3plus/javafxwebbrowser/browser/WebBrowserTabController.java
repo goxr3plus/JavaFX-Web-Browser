@@ -52,6 +52,8 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserTabController.DownloadDetector;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserTabController.FavIconProvider;
 import main.java.com.goxr3plus.javafxwebbrowser.marquee.FXMarquee;
 import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
