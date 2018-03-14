@@ -177,9 +177,9 @@ public class WebBrowserTabController extends StackPane {
 			//System.out.println("WebEngine exception occured" + error.toString())
 			checkForInternetConnection();
 		});
-//		com.sun.javafx.webkit.WebConsoleListener
-//				.setDefaultListener((webView , message , lineNumber , sourceId) -> System.out.println("Console: [" + sourceId + ":" + lineNumber + "] " + message));
-//		
+		//		com.sun.javafx.webkit.WebConsoleListener
+		//				.setDefaultListener((webView , message , lineNumber , sourceId) -> System.out.println("Console: [" + sourceId + ":" + lineNumber + "] " + message));
+		//		
 		//Add listener to the WebEngine
 		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider());
 		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector());
@@ -418,13 +418,33 @@ public class WebBrowserTabController extends StackPane {
 		//Load
 		try {
 			
-			//Find the final website
-			String finalWebsite = ( load != null ) ? load
-					: getSelectedEngineHomeUrl() + ( searchBar.getText().isEmpty() ? "" : "//" + URLEncoder.encode(searchBar.getText(), "UTF-8") );
+			//First Part
+			String finalWebsiteFristPart = ( load != null ) ? load : getSelectedEngineHomeUrl();
+			
+			//Second Part
+			String finalWebsiteSecondPart = "";
+			if (searchBar.getText().isEmpty())
+				finalWebsiteSecondPart = "";
+			else {
+				switch (searchEngineComboBox.getSelectionModel().getSelectedItem().toLowerCase()) {
+					case "bing":
+						finalWebsiteSecondPart = "//?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
+						break;
+					case "duckduckgo":
+						finalWebsiteSecondPart = "//?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
+						break;
+					case "yahoo":
+						finalWebsiteSecondPart = "//?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
+						break;
+					default: //then google
+						finalWebsiteSecondPart = "//search?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
+						break;
+				}
+				
+			}
 			
 			//Load it 
-			webEngine.load(finalWebsite);
-			
+			webEngine.load(finalWebsiteFristPart + finalWebsiteSecondPart);
 		} catch (UnsupportedEncodingException ex) {
 			ex.printStackTrace();
 		}
