@@ -31,7 +31,7 @@
 <dependency>
 	 <groupId>com.github.goxr3plus</groupId>
 	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V9.0.0</version>
+	 <version>V9.1.0</version>
 </dependency>
 ```
 
@@ -41,7 +41,7 @@
 <dependency>
 	 <groupId>com.github.goxr3plus</groupId>
 	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.5.0</version>
+	 <version>V3.5.1</version>
 </dependency>
 ```
 
