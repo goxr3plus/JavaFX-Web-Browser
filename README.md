@@ -1,5 +1,3 @@
-### PS Java 1.8.0_141 ++ Required ! Download Java 8 here : ( https://www.java.com/en/ )
-
 # JAVAFX-WEB-Browser 
 
 [![Latest Version](https://img.shields.io/github/release/goxr3plus/JavaFX-Web-Browser.svg?style=flat-square)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
@@ -9,20 +7,7 @@
 
 [contributors-url]: https://github.com/goxr3plus/JavaFX-Web-Browser/graphs/contributors
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
-[browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser/V3.5.0
-
-# Youtube tutorial 
-[![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
-
-Repository of tutorial -> https://github.com/goxr3plus/JavaFXBrowserOverlay
-
-# You can use this browser inside your JavaFX Application 
-
-What that means ? Well you can download the jar file with Maven , Gradle etc ( the depencities will come along ) and use it inside your application . 
-
---> You don't believe me ?? ( I am already doing this with [XR3Player](https://github.com/goxr3plus/XR3Player) ) 
-
---> How you can embed it inside your application ? ( Use [JitPack.io][browser-jitpack-url] )
+[browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
 
 ### Add it to your project using JitPack :
 
@@ -38,14 +23,52 @@ What that means ? Well you can download the jar file with Maven , Gradle etc ( t
 </repositories>
 ```
 
-###  Step 2. Add the dependency
+### Step 1. Add it as a dependency
+
+* JavaFX-Web-Browser for Java 9 - (9.x.x)
+
 ``` XML
 <dependency>
 	 <groupId>com.github.goxr3plus</groupId>
 	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.5.0</version>
+	 <version>V9.1.0</version>
 </dependency>
 ```
+
+* JavaFX-Web-Browser for Java 8 - (3.x.x)
+
+``` XML
+<dependency>
+	 <groupId>com.github.goxr3plus</groupId>
+	 <artifactId>JavaFX-Web-Browser</artifactId>
+	 <version>V3.5.1</version>
+</dependency>
+```
+
+# Hey friends follow the newest NetBeans tutorial here ->
+
+[![video](http://img.youtube.com/vi/5Y0ZUS7q_lI/0.jpg)](https://www.youtube.com/watch?v=5Y0ZUS7q_lI)
+
+Repository -> https://github.com/goxr3plus/Embedded-JavaFX-Web-Browser-Example-with-Maven
+
+----------------------------------------------------------------------------
+
+The below tutorial is Eclipse Version , older tutorial
+
+# Youtube tutorial 
+[![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
+
+Repository of tutorial -> https://github.com/goxr3plus/JavaFXBrowserOverlay
+
+-----------------------------------------------------------------------------
+
+# You can use this browser inside your JavaFX Application 
+
+What that means ? Well you can download the jar file with Maven , Gradle etc ( the depencities will come along ) and use it inside your application . 
+
+--> You don't believe me ?? ( I am already doing this with [XR3Player](https://github.com/goxr3plus/XR3Player) ) 
+
+--> How you can embed it inside your application ? ( Use [JitPack.io][browser-jitpack-url] )
 
 Then from inside your code you can create an intance or multiple instances of Browser like this:
 
@@ -69,7 +92,8 @@ You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the 
 
 This project is part of XR3Player java Media Player , so i will continue to improve it in every update :) 
 
-Donwload latest prebuild zip folder V3.3.0 [here](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.1.0/JavaFXWebBrowser-3.3.0.zip)
+
+[Download](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.5.0/JavaFXWebBrowser-3.5.0-bin.zip) latest prebuild zip folder V3.5.0 
 
 ![javafxwebbrowser](https://user-images.githubusercontent.com/20374208/32561528-18323d74-c4b5-11e7-9552-f7aeba4f9728.jpg)
 
