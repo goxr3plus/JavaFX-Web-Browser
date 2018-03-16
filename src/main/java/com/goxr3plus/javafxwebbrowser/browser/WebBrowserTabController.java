@@ -259,13 +259,22 @@ public class WebBrowserTabController extends StackPane {
 		facIconImageView.visibleProperty().bind(indicator.visibleProperty().not());
 		facIconImageView.managedProperty().bind(facIconImageView.imageProperty().isNotNull().and(indicator.visibleProperty().not()));
 		
+		//X Button
+		JFXButton closeButton = new JFXButton("X");
+		int maxSize = 25;
+		closeButton.setMinSize(maxSize, maxSize);
+		closeButton.setPrefSize(maxSize, maxSize);
+		closeButton.setMaxSize(maxSize, maxSize);
+		closeButton.setStyle("-fx-background-radius:0; -fx-font-size:8px");
+		closeButton.setOnAction(a -> this.webBrowserController.removeTab(tab));
+		
 		// HBOX
 		HBox hBox = new HBox();
 		hBox.setOnMouseClicked(m -> {
 			if (m.getButton() == MouseButton.MIDDLE)
 				this.webBrowserController.removeTab(tab);
 		});
-		hBox.getChildren().addAll(facIconImageView, stack, marquee);
+		hBox.getChildren().addAll(facIconImageView, stack, marquee, closeButton);
 		tab.setGraphic(hBox);
 		
 		//ContextMenu
@@ -566,6 +575,9 @@ public class WebBrowserTabController extends StackPane {
 		public void changed(ObservableValue<? extends State> observable , State oldState , State newState) {
 			if (newState == Worker.State.SUCCEEDED) {
 				try {
+					if ("about:blank".equals(webEngine.getLocation()))
+						return;
+					
 					//Determine the full url
 					String favIconFullURL = getHostName(webEngine.getLocation()) + "favicon.ico";
 					//System.out.println(favIconFullURL)
