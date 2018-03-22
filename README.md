@@ -9,9 +9,14 @@
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 [browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
 
+>[Java 8 Pre-build runnable jar file](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.5.1/JavaFXWebBrowser-3.5.1-bin.zip) 
+
+>[Java 9 Pre-build runnable jar file](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V9.1.0/JavaFXWebBrowser-9.1.0-bin.zip) 
+
+
 ### Add it to your project using JitPack :
 
-[Link][browser-jitpack-url]
+[Take me a trip to JitPack][browser-jitpack-url]
 
 ### Step 1. Add the JitPack repository to your build file
 ``` XML
@@ -91,9 +96,6 @@ Happy :) ?  Cause i am ...
 You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place . It took me 2 days to make it and it is here for you ready to test and improve it .
 
 This project is part of XR3Player java Media Player , so i will continue to improve it in every update :) 
-
-
-[Download](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.5.0/JavaFXWebBrowser-3.5.0-bin.zip) latest prebuild zip folder V3.5.0 
 
 ![javafxwebbrowser](https://user-images.githubusercontent.com/20374208/32561528-18323d74-c4b5-11e7-9552-f7aeba4f9728.jpg)
 
