@@ -30,7 +30,7 @@ public class WebBrowserController extends StackPane {
 	/** The logger. */
 	private final Logger logger = Logger.getLogger(getClass().getName());
 	
-	public static final String VERSION = "Version 3.5.0";
+	public static final String VERSION = "Version 11/04/2018";
 	
 	public static boolean MOVING_TITLES_ENABLED = true;
 	

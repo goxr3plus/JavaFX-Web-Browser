@@ -52,6 +52,8 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserTabController.DownloadDetector;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserTabController.FavIconProvider;
 import main.java.com.goxr3plus.javafxwebbrowser.marquee.FXMarquee;
 import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
@@ -229,7 +231,7 @@ public class WebBrowserTabController extends StackPane {
 		Label label = new Label();
 		label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		label.setAlignment(Pos.CENTER);
-		label.setStyle("-fx-font-weight:bold; -fx-text-fill: white; -fx-font-size:10; -fx-background-color: rgb(0,0,0,0.3);");
+		label.setStyle("-fx-background-color:#202020; -fx-font-weight:bold; -fx-text-fill: white; -fx-font-size:10;");
 		label.textProperty().bind(Bindings.max(0, indicator.progressProperty()).multiply(100).asString("%.00f %%"));
 		//label.textProperty().bind(Bindings.max(0, indicator.progressProperty()).multiply(100.00).asString("%.02f %%"))
 		// text.visibleProperty().bind(library.getSmartController().inputService.runningProperty())
@@ -253,11 +255,16 @@ public class WebBrowserTabController extends StackPane {
 		});
 		
 		//facIconImageView 
-		facIconImageView.setFitWidth(20);
-		facIconImageView.setFitHeight(20);
+		facIconImageView.setFitWidth(25);
+		facIconImageView.setFitHeight(25);
 		facIconImageView.setSmooth(true);
-		facIconImageView.visibleProperty().bind(indicator.visibleProperty().not());
-		facIconImageView.managedProperty().bind(facIconImageView.imageProperty().isNotNull().and(indicator.visibleProperty().not()));
+		
+		//iconLabel
+		Label iconLabel = new Label();
+		iconLabel.setGraphic(facIconImageView);
+		iconLabel.setStyle("-fx-background-color:#202020");
+		iconLabel.visibleProperty().bind(indicator.visibleProperty().not());
+		iconLabel.managedProperty().bind(facIconImageView.imageProperty().isNotNull().and(indicator.visibleProperty().not()));
 		
 		//X Button
 		JFXButton closeButton = new JFXButton("X");
@@ -274,7 +281,7 @@ public class WebBrowserTabController extends StackPane {
 			if (m.getButton() == MouseButton.MIDDLE)
 				this.webBrowserController.removeTab(tab);
 		});
-		hBox.getChildren().addAll(facIconImageView, stack, marquee, closeButton);
+		hBox.getChildren().addAll(iconLabel, stack, marquee, closeButton);
 		tab.setGraphic(hBox);
 		
 		//ContextMenu
