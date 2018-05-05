@@ -1,3 +1,5 @@
+> PS: Currently i am focused on developing another browser based on Chromium , so i am not actively supporting this Browser anymore except if Oracle decides to improve the JavaFX Browser engine because it is lacking a lot of things .
+
 # JAVAFX-WEB-Browser 
 
 [![Latest Version](https://img.shields.io/github/release/goxr3plus/JavaFX-Web-Browser.svg?style=flat-square)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
