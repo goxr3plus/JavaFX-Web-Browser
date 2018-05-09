@@ -15,6 +15,11 @@
 
 >[Java 9 Pre-build runnable jar file](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V9.1.0/JavaFXWebBrowser-9.1.0-bin.zip) 
 
+### Keep the bro alive :)
+
+<a href="https://patreon.com/preview/8adae1b75d654b2899e04a9e1111f0eb" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
+<a href="https://www.paypal.me/GOXR3PLUSCOMPANY" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
+
 
 ### Add it to your project using JitPack :
 
