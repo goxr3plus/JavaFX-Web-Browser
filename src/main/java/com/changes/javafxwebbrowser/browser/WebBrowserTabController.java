@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main.java.com.goxr3plus.javafxwebbrowser.browser;
+package main.java.com.changes.javafxwebbrowser.browser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -52,8 +52,8 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
-import main.java.com.goxr3plus.javafxwebbrowser.marquee.FXMarquee;
-import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
+import main.java.com.changes.javafxwebbrowser.marquee.FXMarquee;
+import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
@@ -110,6 +110,25 @@ public class WebBrowserTabController extends StackPane {
 	
 	@FXML
 	private JFXCheckBox movingTitleAnimation;
+	
+	@FXML
+	private MenuItem newTab;
+	
+	@FXML
+	private MenuItem newWindow;
+	
+	@FXML 
+	private MenuItem print;
+	
+	@FXML 
+	private MenuItem History;
+	
+	@FXML
+	private MenuItem inspect;
+	
+	@FXML 
+	private MenuItem downloadpage;
+	
 	
 	// -------------------------------------------------------------
 	
@@ -333,7 +352,7 @@ public class WebBrowserTabController extends StackPane {
 		
 		//searchEngineComboBox
 		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
-		searchEngineComboBox.getSelectionModel().select(1);
+		searchEngineComboBox.getSelectionModel().select(0);
 		
 		//requestMobileSite
 		requestMobileSite.selectedProperty().addListener((observable , oldValue , newValue) -> {
@@ -358,12 +377,12 @@ public class WebBrowserTabController extends StackPane {
 		loadWebSite(firstWebSite);
 		
 		//showVersion
-		about.setOnAction(a -> {
+		about.setOnAction((a) -> {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.initStyle(StageStyle.UTILITY);
 			alert.setTitle("JavaFX Browser");
 			alert.setHeaderText(null);
-			alert.setContentText("Browser Version :" + WebBrowserController.VERSION + "\n" + "Created by: GOXR3PLUS STUDIO");
+			alert.setContentText("Browser Version :" + WebBrowserController.VERSION + "\n" + "Created by:CVR COLLEGE STUDENT");
 			
 			alert.showAndWait();
 		});

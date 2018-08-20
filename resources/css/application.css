@@ -494,7 +494,7 @@
 }
 
 .titled-pane > .title {
-    -fx-background-color:  linear-gradient(#38424b 0.0%, #1f2429 20.0%, #191d22 100.0%);
+    -fx-background-color: yellow;
      /*-fx-background-color:  -fx-box-border, -fx-inner-border, -fx-body-color;*/
     -fx-background-insets: 0.0, 1.0, 2.0;
     -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0, 3.0 3.0 0.0 0.0;
@@ -744,7 +744,8 @@
  .button , .menu-button , .segmented-button-bar .toggle-button {	
  	 /*-fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 5.0, 0.0 , 0.0 , 1.0 );*/
     /* -fx-background-color:  linear-gradient(#38424b 0.0%, #1f2429 20.0%, #191d22 100.0%);   */
- 	 -fx-background-color:
+ 	/* */ 
+ 		-fx-background-color:
         -darkest-black,
         -dark-highlight,
         linear-gradient(to bottom, -light-black 2.0%, -dark-black 98.0%);

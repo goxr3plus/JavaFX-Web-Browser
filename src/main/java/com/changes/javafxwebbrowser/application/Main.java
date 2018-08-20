@@ -8,15 +8,15 @@
  * and this list of conditions without modification.
  */
 
-package main.java.com.goxr3plus.javafxwebbrowser.application;
+package main.java.com.changes.javafxwebbrowser.application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserController;
-import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
+import main.java.com.changes.javafxwebbrowser.browser.WebBrowserController;
+import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 
 /**
  * From here you start the application

@@ -1,7 +1,7 @@
 /**
  * TODO LISENSE
  */
-package main.java.com.goxr3plus.javafxwebbrowser.browser;
+package main.java.com.changes.javafxwebbrowser.browser;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
-import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
+import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 
 /**
  * @author GOXR3PLUS
