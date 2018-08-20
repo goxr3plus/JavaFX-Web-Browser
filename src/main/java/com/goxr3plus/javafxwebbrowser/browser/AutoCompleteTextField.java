@@ -29,7 +29,7 @@ import javafx.scene.input.KeyEvent;
  */
 public final class AutoCompleteTextField {
 	
-	/** The existing auto complete entries. */
+	/** The existing auto complete entries. in text field  */
 	private SortedSet<String> entries = new TreeSet<>();
 	
 	/** The pop up used to select an entry. */
