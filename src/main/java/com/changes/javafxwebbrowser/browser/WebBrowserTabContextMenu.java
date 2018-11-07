@@ -34,7 +34,7 @@ public class WebBrowserTabContextMenu extends ContextMenu {
 	
 	// -------------------------------------------------------------
 	
-	/** The logger. */
+	/** The logger.   */
 	private final Logger logger = Logger.getLogger(getClass().getName());
 	
 	private final WebBrowserTabController webBrowserTabController;

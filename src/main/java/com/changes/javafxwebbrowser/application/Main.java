@@ -21,7 +21,7 @@ import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 /**
  * From here you start the application
  * 
- * @author GOXR3PLUS STUDIO ( your bro! )
+ * @author Electron Tech!
  *
  */
 public class Main extends Application {
@@ -41,7 +41,7 @@ public class Main extends Application {
 		Scene scene = new Scene(root, getVisualScreenWidth() / 1.2, getVisualScreenHeight() / 1.2);
 		
 		//Prepare the Stage
-		primaryStage.setTitle("JavaFX Web Browser- Made by GOXR3PLUS Studio");
+		//primaryStage.setTitle("JavaFX Web Browser");
 		primaryStage.getIcons().add(InfoTool.getImageFromResourcesFolder("logo.png"));
 		primaryStage.setScene(scene);
 		primaryStage.setOnCloseRequest(cl -> System.exit(0));

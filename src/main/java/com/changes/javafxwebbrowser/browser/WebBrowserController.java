@@ -22,7 +22,7 @@ import javafx.scene.layout.StackPane;
 import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 
 /**
- * @author GOXR3PLUS
+ * @author Electron Tech!
  *
  */
 public class WebBrowserController extends StackPane {

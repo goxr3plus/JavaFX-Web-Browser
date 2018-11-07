@@ -59,7 +59,7 @@ import net.sf.image4j.codec.ico.ICODecoder;
 /**
  * This class represents a Tab from The WebBrowser
  * 
- * @author GOXR3PLUS
+ * @author Electron Tech!
  *
  */
 public class WebBrowserTabController extends StackPane {
@@ -117,17 +117,27 @@ public class WebBrowserTabController extends StackPane {
 	@FXML
 	private MenuItem newWindow;
 	
-	@FXML 
-	private MenuItem print;
 	
 	@FXML 
 	private MenuItem History;
 	
+	/*
+	 * NEW - FEATURE [[[----------------------------------]]]
+	 */
 	@FXML
 	private MenuItem inspect;
 	
 	@FXML 
 	private MenuItem downloadpage;
+	
+	@FXML
+	private MenuItem print;
+	
+	@FXML
+	private MenuItem notebookpage;
+	
+	@FXML
+	private MenuItem findinpage;
 	
 	
 	// -------------------------------------------------------------
@@ -351,7 +361,7 @@ public class WebBrowserTabController extends StackPane {
 		});
 		
 		//searchEngineComboBox
-		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
+		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo","Ajay");
 		searchEngineComboBox.getSelectionModel().select(0);
 		
 		//requestMobileSite
@@ -387,6 +397,10 @@ public class WebBrowserTabController extends StackPane {
 			alert.showAndWait();
 		});
 	}
+	
+	/**
+	 * NEW - IMPLEMENTSSTION GOES HERE
+	 */
 	
 	/**
 	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
