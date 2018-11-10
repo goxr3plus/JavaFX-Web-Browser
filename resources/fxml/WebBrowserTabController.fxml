@@ -138,7 +138,7 @@
                               <SeparatorMenuItem mnemonicParsing="false" />
                               <MenuItem mnemonicParsing="false">
                                  <graphic>
-                                    <JFXCheckBox fx:id="requestMobileSite" text="Request Mobile Site" textFill="WHITE" />
+                                    <JFXCheckBox fx:id="requestMobileSite" checkedColor="#4d50e8" text="Request Mobile Site" textFill="WHITE" />
                                  </graphic>
                               </MenuItem>
                               <SeparatorMenuItem mnemonicParsing="false" />
@@ -151,19 +151,30 @@
                               <SeparatorMenuItem mnemonicParsing="false" />
                               
                               
-                              <MenuItem fx:id="about" mnemonicParsing="false" text="About ?" />
+                              
+                              <!-- cookie storage managment -->
+                              
+                              <MenuItem  mnemonicParsing="false">
+                                 <graphic>
+                                    <JFXCheckBox  fx:id="cookieStorage" selected="true" text="Store Cookies" textFill="WHITE" />
+                                 </graphic>
+                              </MenuItem>
                               <SeparatorMenuItem mnemonicParsing="false" />
+                              
                               
                               <MenuItem fx:id="downloadPage" mnemonicParsing="false" text="Download WebPage" />
                               <SeparatorMenuItem mnemonicParsing="false" />
                               
-                              <MenuItem mnemonicParsing="false" text="Print..." />
+                              <MenuItem fx:id="printPage" mnemonicParsing="false" text="Print..." />
                               <SeparatorMenuItem mnemonicParsing="false" />
                               
-                              <MenuItem fx:id="notebookpage"  mnemonicParsing="false" text="Add Page To NoteBook" />
+                              <MenuItem fx:id="notebookpage" mnemonicParsing="false" text="Add Page To NoteBook" />
                               <SeparatorMenuItem mnemonicParsing="false" />
                               
                               <MenuItem fx:id="findinpange" mnemonicParsing="false" text="Find In Page" />
+                              
+                              
+                              <MenuItem fx:id="about" mnemonicParsing="false" text="About ?" />
                            </items>
                         </MenuButton>
                      </children>
