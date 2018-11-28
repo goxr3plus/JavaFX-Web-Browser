@@ -29,10 +29,10 @@ public class Main extends Application {
 		root.setCenter(new WebBrowserController());
 		
 		//Scene
-		Scene scene = new Scene(root, getVisualScreenWidth() , getVisualScreenHeight());
+		Scene scene = new Scene(root, getVisualScreenWidth() / 2, getVisualScreenHeight() / 2);
 		
 		//Prepare the Stage
-		//primaryStage.setTitle("JavaFX Web Browser");
+		primaryStage.setTitle("JavaFX Web Browser");
 		primaryStage.getIcons().add(InfoTool.getImageFromResourcesFolder("logo.png"));
 		primaryStage.setScene(scene);
 		primaryStage.setOnCloseRequest(cl -> System.exit(0));
@@ -53,8 +53,8 @@ public class Main extends Application {
 	/**
 	 * Gets the visual screen height.
 	 *
-	 * @return The screen <b>Height</b> based on the <b>visual bounds</b> of the Screen.These bounds account for objects in the native windowing system
-	 *         such as task bars and menu bars. These bounds are contained by Screen.bounds.
+	 * @return The screen <b>Height</b> based on the <b>visual bounds</b> of the Screen.These bounds account for objects in the native windowing
+	 *         system such as task bars and menu bars. These bounds are contained by Screen.bounds.
 	 */
 	public static double getVisualScreenHeight() {
 		return Screen.getPrimary().getVisualBounds().getHeight();

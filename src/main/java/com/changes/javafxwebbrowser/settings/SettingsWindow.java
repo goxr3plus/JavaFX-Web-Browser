@@ -1,6 +1,6 @@
 package main.java.com.changes.javafxwebbrowser.settings;
 
-//TODO
+// TODO
 public class SettingsWindow {
 	
 }

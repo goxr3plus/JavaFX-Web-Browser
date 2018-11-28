@@ -3,7 +3,7 @@
  */
 package main.java.com.changes.javafxwebbrowser.browser;
 
-//import main.java.com.changes.javafxwebbrowser.application.Main;
+// import main.java.com.changes.javafxwebbrowser.application.Main;
 import javafx.scene.Node;
 import javafx.print.*;
 import javafx.scene.transform.*;
@@ -126,8 +126,7 @@ public class WebBrowserTabController extends StackPane {
 	@FXML
 	private MenuItem newWindow;
 	
-	
-	@FXML 
+	@FXML
 	private MenuItem History;
 	
 	/*
@@ -136,7 +135,7 @@ public class WebBrowserTabController extends StackPane {
 	@FXML
 	private MenuItem inspect;
 	
-	@FXML 
+	@FXML
 	private MenuItem downloadPage;
 	
 	@FXML
@@ -185,8 +184,7 @@ public class WebBrowserTabController extends StackPane {
 		
 		try {
 			loader.load();
-		} 
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			logger.log(Level.SEVERE, "", ex);
 		}
 	}
@@ -344,9 +342,8 @@ public class WebBrowserTabController extends StackPane {
 			
 		});
 		
-		
 		/**
-		 * new way of creating the object and pass information through it 
+		 * new way of creating the object and pass information through it
 		 */
 		
 		//Proposing sites
@@ -377,7 +374,7 @@ public class WebBrowserTabController extends StackPane {
 		});
 		
 		//searchEngineComboBox
-		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo","Ajay");
+		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo", "Ajay");
 		searchEngineComboBox.getSelectionModel().select(0);
 		
 		//requestMobileSite
@@ -408,148 +405,103 @@ public class WebBrowserTabController extends StackPane {
 			alert.initStyle(StageStyle.UTILITY);
 			alert.setTitle("JavaFX Browser");
 			alert.setHeaderText(null);
-			alert.setContentText("Browser Version :" + WebBrowserController.VERSION + "\n" + "Created by:CVR COLLEGE STUDENT");
+			alert.setContentText("Created by:CVR COLLEGE STUDENT");
 			
 			alert.showAndWait();
 		});
-	
-	
-	/**
-	 * NEW - IMPLEMENTSSTION GOES HERE
-	 */
 		
+		/**
+		 * NEW - IMPLEMENTSSTION GOES HERE
+		 */
 		
 		/*
 		 * printing web page implementation
 		 */
-	printPage.setOnAction((e)->
-	{
-	    PrinterJob job = PrinterJob.createPrinterJob();
-	    if (job != null) {
-	        webEngine.print(job);
-	        job.endJob();
-	    }
-	});
-	
-	
-	
-	/*
-	 * cookie storage managment 
-	 */
-	cookieStorage.selectedProperty().addListener((observable,oldvalue,newvalue)->
-	{
-		if(newvalue)
-		{
-			CookieManager manager = new CookieManager();
-			manager.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
-			CookieHandler.setDefault(manager);
-			
-			//it can save cookie on disk upon exit of application for next startup you can retrieve
-			CookieStore store = manager.getCookieStore();
-			 try {
-				 URI uriadd = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
-				store.add(uriadd ,new HttpCookie("name","value"));
-				
-				
-				/*
-				System.out.println("host"+uriadd.getHost());
-				System.out.println("spliting"+uriadd.toString().split("/"));
-				System.out.println("path"+uriadd.getPath());
-				System.out.println(""+uriadd.getRawPath());
-				System.out.println(""+uriadd.getRawPath().replace('/','.'));
-				
-				String new_ur =uriadd.getHost()+uriadd.getRawPath().replaceAll("/",".")+"html";
-				System.out.println(new_ur);
-				
-				
-				*/
-			} catch (URISyntaxException e1) {
-			
-				e1.printStackTrace();
+		printPage.setOnAction((e) -> {
+			PrinterJob job = PrinterJob.createPrinterJob();
+			if (job != null) {
+				webEngine.print(job);
+				job.endJob();
 			}
-			 
-			 //get cookie implementation
-			 try {
-				 
-				URI getcookie = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
-				store.get(getcookie);
-			} catch (URISyntaxException e1) {
+		});
+		
+		/*
+		 * cookie storage managment
+		 */
+		cookieStorage.selectedProperty().addListener((observable , oldvalue , newvalue) -> {
+			if (newvalue) {
+				CookieManager manager = new CookieManager();
+				manager.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
+				CookieHandler.setDefault(manager);
 				
-				e1.printStackTrace();
+				//it can save cookie on disk upon exit of application for next startup you can retrieve
+				CookieStore store = manager.getCookieStore();
+				try {
+					URI uriadd = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
+					store.add(uriadd, new HttpCookie("name", "value"));
+					
+					/*
+					 * System.out.println("host"+uriadd.getHost()); System.out.println("spliting"+uriadd.toString().split("/"));
+					 * System.out.println("path"+uriadd.getPath()); System.out.println(""+uriadd.getRawPath());
+					 * System.out.println(""+uriadd.getRawPath().replace('/','.')); String new_ur
+					 * =uriadd.getHost()+uriadd.getRawPath().replaceAll("/",".")+"html"; System.out.println(new_ur);
+					 */
+				} catch (URISyntaxException e1) {
+					
+					e1.printStackTrace();
+				}
+				
+				//get cookie implementation
+				try {
+					
+					URI getcookie = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
+					store.get(getcookie);
+				} catch (URISyntaxException e1) {
+					
+					e1.printStackTrace();
+				}
+				
+			} else {
+				CookieManager manager = new CookieManager();
+				manager.setCookiePolicy(CookiePolicy.ACCEPT_NONE);
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setTitle("COOKIES STATUS");
+				alert.setHeaderText(null);
+				alert.setContentText("Browser DISABLED COOKIES NO TRACKING");
+				
+				alert.showAndWait();
 			}
+		});
 		
-		}
-		else
-		{
-			CookieManager manager = new CookieManager();
-			manager.setCookiePolicy(CookiePolicy.ACCEPT_NONE);
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.initStyle(StageStyle.UTILITY);
-			alert.setTitle("COOKIES STATUS");
-			alert.setHeaderText(null);
-			alert.setContentText("Browser DISABLED COOKIES NO TRACKING");
-			
-			alert.showAndWait();
-		}
-	});
-	
-	
-	
-	
-	
-	
-	/*
-	 * Download web page implementation
-	 */
+		/*
+		 * Download web page implementation
+		 */
 		
-	downloadPage.setOnAction((printpage->
-	{
-		try
-		{
-			URI  u = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
-		//Authenticator.setDefault(new DialogAuthenticator());
-			
-			String new_ur =u.getHost()+u.getRawPath().replaceAll("/",".")+"html";
-				FileOutputStream fos = new FileOutputStream("D:\\"+new_ur+".html",true);
+		downloadPage.setOnAction( ( printpage -> {
+			try {
+				URI u = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
+				//Authenticator.setDefault(new DialogAuthenticator());
 				
+				String new_ur = u.getHost() + u.getRawPath().replaceAll("/", ".") + "html";
+				FileOutputStream fos = new FileOutputStream("D:\\" + new_ur + ".html", true);
+				
+				InputStream in = u.toURL().openStream();
+				int c;
+				while ( ( c = in.read() ) != -1) {
+					fos.write(c);
 					
-					InputStream in =u.toURL().openStream();
-					int c;
-					while((c=in.read())!=-1)
-					{
-						fos.write(c);
-						
-					}
-					
-					in.close();
-					fos.close();
 				}
-				catch( IOException | URISyntaxException e)
-				{
-					System.out.println("exception occured"+e.getMessage());
-				}
-	}));
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+				
+				in.close();
+				fos.close();
+			} catch (IOException | URISyntaxException e) {
+				System.out.println("exception occured" + e.getMessage());
+			}
+		} ));
+		
 	}
 	
-	
-	
-	
-	
-	
-	
-
 	/**
 	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
 	 * https://duckduckgo.com

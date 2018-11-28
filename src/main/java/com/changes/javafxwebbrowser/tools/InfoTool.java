@@ -48,12 +48,10 @@ public final class InfoTool {
 	}
 	
 	/**
-	 * Returns the absolute path of the current directory in which the given
-	 * class file is.
+	 * Returns the absolute path of the current directory in which the given class file is.
 	 * 
 	 * @param classs
-	 *        * @return The absolute path of the current directory in which the
-	 *        class file is. <b>[it ends with File.Separator!!]</b>
+	 *            * @return The absolute path of the current directory in which the class file is. <b>[it ends with File.Separator!!]</b>
 	 * @author GOXR3PLUS[StackOverFlow user] + bachden [StackOverFlow user]
 	 */
 	public static final String getBasePathForClass(Class<?> classs) {
@@ -107,7 +105,7 @@ public final class InfoTool {
 	 * Checks if a web site is reachable using ping command.
 	 *
 	 * @param host
-	 *        the host
+	 *            the host
 	 * @return <b> true </b> if Connected on Internet,<b> false </b> if not.
 	 */
 	public static boolean isReachableByPing(String host) {
@@ -129,13 +127,11 @@ public final class InfoTool {
 	}
 	
 	/**
-	 * Use this method to retrieve an image from the resources of the
-	 * application.
+	 * Use this method to retrieve an image from the resources of the application.
 	 *
 	 * @param imageName
-	 *        the image name
-	 * @return Returns an image which is already into the resources folder of
-	 *         the application
+	 *            the image name
+	 * @return Returns an image which is already into the resources folder of the application
 	 */
 	public static Image getImageFromResourcesFolder(String imageName) {
 		return new Image(InfoTool.class.getResourceAsStream(IMAGES + imageName));
@@ -145,7 +141,7 @@ public final class InfoTool {
 	 * Gets the file size edited in format "x MiB , y KiB"
 	 *
 	 * @param bytes
-	 *        File size in bytes
+	 *            File size in bytes
 	 * @return <b> a String representing the file size in MB and kB </b>
 	 */
 	public static String getFileSizeEdited(long bytes) {

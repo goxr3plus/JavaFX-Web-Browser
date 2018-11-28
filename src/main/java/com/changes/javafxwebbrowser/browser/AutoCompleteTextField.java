@@ -29,7 +29,7 @@ import javafx.scene.input.KeyEvent;
  */
 public final class AutoCompleteTextField {
 	
-	/** The existing auto complete entries. in text field  */
+	/** The existing auto complete entries. in text field */
 	private SortedSet<String> entries = new TreeSet<>();
 	
 	/** The pop up used to select an entry. */
@@ -144,8 +144,8 @@ public final class AutoCompleteTextField {
 	}
 	
 	/**
-	 * <b> Warning with this method will lead to NullPointerException if the given SortedSet goes to null , i am using it when i have really big TreeSets
-	 * on my Application</b> <br>
+	 * <b> Warning with this method will lead to NullPointerException if the given SortedSet goes to null , i am using it when i have really big
+	 * TreeSets on my Application</b> <br>
 	 * 
 	 * Add auto completion capabilities to the given textField
 	 * 
