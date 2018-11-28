@@ -1,7 +1,7 @@
 /*
  * 
  */
-package main.java.com.goxr3plus.javafxwebbrowser.browser;
+package main.java.com.changes.javafxwebbrowser.browser;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -29,7 +29,7 @@ import javafx.scene.input.KeyEvent;
  */
 public final class AutoCompleteTextField {
 	
-	/** The existing auto complete entries. */
+	/** The existing auto complete entries. in text field  */
 	private SortedSet<String> entries = new TreeSet<>();
 	
 	/** The pop up used to select an entry. */

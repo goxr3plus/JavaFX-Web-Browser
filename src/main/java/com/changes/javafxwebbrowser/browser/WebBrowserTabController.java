@@ -1,14 +1,21 @@
 /**
  * 
  */
-package main.java.com.goxr3plus.javafxwebbrowser.browser;
+package main.java.com.changes.javafxwebbrowser.browser;
+
+//import main.java.com.changes.javafxwebbrowser.application.Main;
+import javafx.scene.Node;
+import javafx.print.*;
+import javafx.scene.transform.*;
+import java.net.*;
+import java.io.FileWriter;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +37,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.print.PrinterJob;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -52,14 +60,15 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
-import main.java.com.goxr3plus.javafxwebbrowser.marquee.FXMarquee;
-import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
+import main.java.com.changes.javafxwebbrowser.application.Main;
+import main.java.com.changes.javafxwebbrowser.marquee.FXMarquee;
+import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
  * This class represents a Tab from The WebBrowser
  * 
- * @author GOXR3PLUS
+ * @author Electron Tech!
  *
  */
 public class WebBrowserTabController extends StackPane {
@@ -111,6 +120,36 @@ public class WebBrowserTabController extends StackPane {
 	@FXML
 	private JFXCheckBox movingTitleAnimation;
 	
+	@FXML
+	private MenuItem newTab;
+	
+	@FXML
+	private MenuItem newWindow;
+	
+	
+	@FXML 
+	private MenuItem History;
+	
+	/*
+	 * NEW - FEATURE [[[----------------------------------]]]
+	 */
+	@FXML
+	private MenuItem inspect;
+	
+	@FXML 
+	private MenuItem downloadPage;
+	
+	@FXML
+	private MenuItem printPage;
+	
+	@FXML
+	private MenuItem notebookpage;
+	
+	@FXML
+	private MenuItem findinpage;
+	
+	@FXML
+	private JFXCheckBox cookieStorage;
 	// -------------------------------------------------------------
 	
 	/** The engine. */
@@ -146,7 +185,8 @@ public class WebBrowserTabController extends StackPane {
 		
 		try {
 			loader.load();
-		} catch (IOException ex) {
+		} 
+		catch (IOException ex) {
 			logger.log(Level.SEVERE, "", ex);
 		}
 	}
@@ -304,6 +344,11 @@ public class WebBrowserTabController extends StackPane {
 			
 		});
 		
+		
+		/**
+		 * new way of creating the object and pass information through it 
+		 */
+		
 		//Proposing sites
 		new AutoCompleteTextField().bindAutoCompletion(searchBar, 15, true, WebBrowserController.WEBSITE_PROPOSALS);
 		
@@ -332,8 +377,8 @@ public class WebBrowserTabController extends StackPane {
 		});
 		
 		//searchEngineComboBox
-		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo");
-		searchEngineComboBox.getSelectionModel().select(1);
+		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo","Ajay");
+		searchEngineComboBox.getSelectionModel().select(0);
 		
 		//requestMobileSite
 		requestMobileSite.selectedProperty().addListener((observable , oldValue , newValue) -> {
@@ -344,7 +389,7 @@ public class WebBrowserTabController extends StackPane {
 			
 			System.out.println(webEngine.getUserAgent());
 			
-			//Reload the website
+			//Reload the Website
 			reloadWebSite();
 		});
 		
@@ -358,17 +403,153 @@ public class WebBrowserTabController extends StackPane {
 		loadWebSite(firstWebSite);
 		
 		//showVersion
-		about.setOnAction(a -> {
+		about.setOnAction((a) -> {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.initStyle(StageStyle.UTILITY);
 			alert.setTitle("JavaFX Browser");
 			alert.setHeaderText(null);
-			alert.setContentText("Browser Version :" + WebBrowserController.VERSION + "\n" + "Created by: GOXR3PLUS STUDIO");
+			alert.setContentText("Browser Version :" + WebBrowserController.VERSION + "\n" + "Created by:CVR COLLEGE STUDENT");
 			
 			alert.showAndWait();
 		});
+	
+	
+	/**
+	 * NEW - IMPLEMENTSSTION GOES HERE
+	 */
+		
+		
+		/*
+		 * printing web page implementation
+		 */
+	printPage.setOnAction((e)->
+	{
+	    PrinterJob job = PrinterJob.createPrinterJob();
+	    if (job != null) {
+	        webEngine.print(job);
+	        job.endJob();
+	    }
+	});
+	
+	
+	
+	/*
+	 * cookie storage managment 
+	 */
+	cookieStorage.selectedProperty().addListener((observable,oldvalue,newvalue)->
+	{
+		if(newvalue)
+		{
+			CookieManager manager = new CookieManager();
+			manager.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
+			CookieHandler.setDefault(manager);
+			
+			//it can save cookie on disk upon exit of application for next startup you can retrieve
+			CookieStore store = manager.getCookieStore();
+			 try {
+				 URI uriadd = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
+				store.add(uriadd ,new HttpCookie("name","value"));
+				
+				
+				/*
+				System.out.println("host"+uriadd.getHost());
+				System.out.println("spliting"+uriadd.toString().split("/"));
+				System.out.println("path"+uriadd.getPath());
+				System.out.println(""+uriadd.getRawPath());
+				System.out.println(""+uriadd.getRawPath().replace('/','.'));
+				
+				String new_ur =uriadd.getHost()+uriadd.getRawPath().replaceAll("/",".")+"html";
+				System.out.println(new_ur);
+				
+				
+				*/
+			} catch (URISyntaxException e1) {
+			
+				e1.printStackTrace();
+			}
+			 
+			 //get cookie implementation
+			 try {
+				 
+				URI getcookie = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
+				store.get(getcookie);
+			} catch (URISyntaxException e1) {
+				
+				e1.printStackTrace();
+			}
+		
+		}
+		else
+		{
+			CookieManager manager = new CookieManager();
+			manager.setCookiePolicy(CookiePolicy.ACCEPT_NONE);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.initStyle(StageStyle.UTILITY);
+			alert.setTitle("COOKIES STATUS");
+			alert.setHeaderText(null);
+			alert.setContentText("Browser DISABLED COOKIES NO TRACKING");
+			
+			alert.showAndWait();
+		}
+	});
+	
+	
+	
+	
+	
+	
+	/*
+	 * Download web page implementation
+	 */
+		
+	downloadPage.setOnAction((printpage->
+	{
+		try
+		{
+			URI  u = new URI(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
+		//Authenticator.setDefault(new DialogAuthenticator());
+			
+			String new_ur =u.getHost()+u.getRawPath().replaceAll("/",".")+"html";
+				FileOutputStream fos = new FileOutputStream("D:\\"+new_ur+".html",true);
+				
+					
+					InputStream in =u.toURL().openStream();
+					int c;
+					while((c=in.read())!=-1)
+					{
+						fos.write(c);
+						
+					}
+					
+					in.close();
+					fos.close();
+				}
+				catch( IOException | URISyntaxException e)
+				{
+					System.out.println("exception occured"+e.getMessage());
+				}
+	}));
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 	
+	
+	
+	
+	
+	
+	
+
 	/**
 	 * Returns back the main domain of the given url for example https://duckduckgo.com/?q=/favicon.ico returns <br>
 	 * https://duckduckgo.com
@@ -529,7 +710,7 @@ public class WebBrowserTabController extends StackPane {
 		//tryAgainIndicator
 		tryAgainIndicator.setVisible(true);
 		
-		//Check for internet connection
+		//Check for Internet connection
 		Thread thread = new Thread(() -> {
 			boolean hasInternet = InfoTool.isReachableByPing("www.google.com");
 			Platform.runLater(() -> {
@@ -540,7 +721,7 @@ public class WebBrowserTabController extends StackPane {
 				//Visibility of Try Again Indicator
 				tryAgainIndicator.setVisible(false);
 				
-				//Reload the website if it has internet
+				//Reload the Website if it has Internet
 				if (hasInternet)
 					reloadWebSite();
 			});
