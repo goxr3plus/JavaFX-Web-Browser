@@ -11,15 +11,39 @@ You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the 
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 [browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
 
-> Java 8 and 9 releases [here](https://github.com/goxr3plus/JavaFX-Web-Browser/wiki/Java-8-and-9-Releases)
+> Older Java 8 and 9 releases [here](https://github.com/goxr3plus/JavaFX-Web-Browser/wiki/Java-8-and-9-Releases)
 
-### You can use this browser inside your JavaFX Application 
 
-What that means ? Well you can download the jar file with Maven , Gradle etc ( the depencities will come along ) and use it inside your application . 
+### How to add this browser inside your application 
 
---> You don't believe me ?? ( I am already doing this with [XR3Player](https://github.com/goxr3plus/XR3Player) ) 
 
---> How you can embed it inside your application ? ( Use [JitPack.io][browser-jitpack-url] )
+1.
+
+You have to add it as a dependency , you can use [JitPack.io][browser-jitpack-url]
+
+> Step 1. Add the JitPack repository to your build file
+
+```XML
+<repositories>
+	<repository>
+		  <id>jitpack.io</id>
+		  <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+
+```
+
+> Step 2. Add the dependency
+
+```xml
+ <dependency>
+	   <groupId>com.github.goxr3plus</groupId>
+	   <artifactId>JavaFX-Web-Browser</artifactId>
+	   <version>Tag</version>
+  </dependency>
+```
+
+2. 
 
 Then from inside your code you can create an intance or multiple instances of Browser like this:
 
