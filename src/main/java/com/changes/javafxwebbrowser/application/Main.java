@@ -2,41 +2,60 @@
 package main.java.com.changes.javafxwebbrowser.application;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import main.java.com.changes.javafxwebbrowser.application.controllers.TopBar;
 import main.java.com.changes.javafxwebbrowser.browser.WebBrowserController;
 import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
+import main.java.com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 
 /**
  * From here you start the application
  * 
- * @author Electron Tech!
+ * @author Electron Tech! , GOXR3PLUS STUDIO
  *
  */
 public class Main extends Application {
 	
-	/*
-	 * (non-Javadoc)
-	 * @see javafx.application.Application#start(javafx.stage.Stage)
-	 */
+	public static Stage window;
+	
+	/** The Top Bar of the Application */
+	public static TopBar topBar;
+	
+	public static BorderPane root;
+	
+	public static BorderlessScene borderlessScene;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		
-		//Root
-		BorderPane root = new BorderPane();
+		//TopBar
+		topBar = new TopBar();
+		
+		//Root 
+		root = new BorderPane();
+		root.setStyle("-fx-background-color:#202020");
+		root.setTop(topBar);
 		root.setCenter(new WebBrowserController());
 		
-		//Scene
-		Scene scene = new Scene(root, getVisualScreenWidth() / 2, getVisualScreenHeight() / 2);
-		
 		//Prepare the Stage
-		primaryStage.setTitle("JavaFX Web Browser");
-		primaryStage.getIcons().add(InfoTool.getImageFromResourcesFolder("logo.png"));
-		primaryStage.setScene(scene);
-		primaryStage.setOnCloseRequest(cl -> System.exit(0));
-		primaryStage.show();
+		window = primaryStage;
+		window.setTitle("JavaFX Web Browser");
+		window.setWidth(getVisualScreenWidth()/1.5);
+		window.setHeight(getVisualScreenHeight()/1.2);
+		window.getIcons().add(InfoTool.getImageFromResourcesFolder("logo.png"));
+		window.setOnCloseRequest(cl -> System.exit(0));
+		
+		// Borderless Scene
+		borderlessScene = new BorderlessScene(window, StageStyle.UNDECORATED, root, 600 , 400);
+		//borderlessScene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+		borderlessScene.setMoveControl(topBar);
+		window.setScene(borderlessScene);
+		
+		window.sizeToScene();
+		window.show();
 		
 	}
 	

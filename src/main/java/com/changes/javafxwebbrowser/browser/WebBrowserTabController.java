@@ -3,19 +3,21 @@
  */
 package main.java.com.changes.javafxwebbrowser.browser;
 
-// import main.java.com.changes.javafxwebbrowser.application.Main;
-import javafx.scene.Node;
-import javafx.print.*;
-import javafx.scene.transform.*;
-import java.net.*;
-import java.io.FileWriter;
-
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.CookieStore;
+import java.net.HttpCookie;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +25,6 @@ import java.util.logging.Logger;
 import org.apache.commons.validator.routines.UrlValidator;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -40,14 +41,15 @@ import javafx.geometry.Pos;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -60,7 +62,6 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
-import main.java.com.changes.javafxwebbrowser.application.Main;
 import main.java.com.changes.javafxwebbrowser.marquee.FXMarquee;
 import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
@@ -79,36 +80,6 @@ public class WebBrowserTabController extends StackPane {
 	//------------------------------------------------------------
 	
 	@FXML
-	private BorderPane borderPane;
-	
-	@FXML
-	private WebView webView;
-	
-	@FXML
-	private Button backwardButton;
-	
-	@FXML
-	private Button reloadButton;
-	
-	@FXML
-	private Button forwardButton;
-	
-	@FXML
-	private TextField searchBar;
-	
-	@FXML
-	private ComboBox<String> searchEngineComboBox;
-	
-	@FXML
-	private Button goButton;
-	
-	@FXML
-	private JFXCheckBox requestMobileSite;
-	
-	@FXML
-	private MenuItem about;
-	
-	@FXML
 	private VBox errorPane;
 	
 	@FXML
@@ -118,25 +89,37 @@ public class WebBrowserTabController extends StackPane {
 	private ProgressIndicator tryAgainIndicator;
 	
 	@FXML
-	private JFXCheckBox movingTitleAnimation;
+	private BorderPane borderPane;
 	
 	@FXML
-	private MenuItem newTab;
+	private JFXButton backwardButton;
 	
 	@FXML
-	private MenuItem newWindow;
+	private JFXButton reloadButton;
 	
 	@FXML
-	private MenuItem History;
-	
-	/*
-	 * NEW - FEATURE [[[----------------------------------]]]
-	 */
-	@FXML
-	private MenuItem inspect;
+	private JFXButton forwardButton;
 	
 	@FXML
-	private MenuItem downloadPage;
+	private JFXButton homeButton;
+	
+	@FXML
+	private TextField searchBar;
+	
+	@FXML
+	private JFXButton copyText;
+	
+	@FXML
+	private JFXButton goButton;
+	
+	@FXML
+	private JFXButton openInDefaultBrowser;
+	
+	@FXML
+	private ToggleGroup searchEngineGroup;
+	
+	@FXML
+	private CheckMenuItem movingTitleAnimation;
 	
 	@FXML
 	private MenuItem printPage;
@@ -145,14 +128,21 @@ public class WebBrowserTabController extends StackPane {
 	private MenuItem notebookpage;
 	
 	@FXML
-	private MenuItem findinpage;
+	private MenuItem findinpange;
 	
 	@FXML
-	private JFXCheckBox cookieStorage;
+	private MenuItem downloadPage;
+	
+	@FXML
+	private CheckMenuItem cookieStorage;
+	
+	@FXML
+	private WebView webView;
+	
 	// -------------------------------------------------------------
 	
 	/** The engine. */
-	WebEngine webEngine;
+	WebEngine browser;
 	
 	/** The web history */
 	private WebHistory history;
@@ -210,8 +200,8 @@ public class WebBrowserTabController extends StackPane {
 		//	});
 		
 		//-------------------WebEngine------------------------
-		webEngine = webView.getEngine();
-		webEngine.getLoadWorker().exceptionProperty().addListener(error -> {
+		browser = webView.getEngine();
+		browser.getLoadWorker().exceptionProperty().addListener(error -> {
 			//System.out.println("WebEngine exception occured" + error.toString())
 			checkForInternetConnection();
 		});
@@ -219,9 +209,9 @@ public class WebBrowserTabController extends StackPane {
 		//				.setDefaultListener((webView , message , lineNumber , sourceId) -> System.out.println("Console: [" + sourceId + ":" + lineNumber + "] " + message));
 		//		
 		//Add listener to the WebEngine
-		webEngine.getLoadWorker().stateProperty().addListener(new FavIconProvider());
-		webEngine.getLoadWorker().stateProperty().addListener(new DownloadDetector());
-		webEngine.getLoadWorker().stateProperty().addListener((observable , oldState , newState) -> {
+		browser.getLoadWorker().stateProperty().addListener(new FavIconProvider());
+		browser.getLoadWorker().stateProperty().addListener(new DownloadDetector());
+		browser.getLoadWorker().stateProperty().addListener((observable , oldState , newState) -> {
 			if (newState == Worker.State.SUCCEEDED) {
 				
 				//Check for error pane
@@ -234,33 +224,33 @@ public class WebBrowserTabController extends StackPane {
 			}
 		});
 		
-		webEngine.setOnError(error -> {
+		browser.setOnError(error -> {
 			//System.out.println("WebEngine error occured")
 			checkForInternetConnection();
 		});
 		
 		//handle pop up windows
-		webEngine.setCreatePopupHandler(l -> webBrowserController.createAndAddNewTab().getWebView().getEngine());
+		browser.setCreatePopupHandler(l -> webBrowserController.createAndAddNewTab().getWebView().getEngine());
 		//System.out.println(webEngine.getUserAgent())
 		//webEngine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0");
 		//System.out.println(webEngine.getUserAgent());
 		
 		//History
-		setHistory(webEngine.getHistory());
+		setHistory(browser.getHistory());
 		historyEntryList = getHistory().getEntries();
 		SimpleListProperty<Entry> list = new SimpleListProperty<>(historyEntryList);
 		
 		//-------------------TAB------------------------
 		tab.setTooltip(new Tooltip(""));
-		tab.getTooltip().textProperty().bind(webEngine.titleProperty());
+		tab.getTooltip().textProperty().bind(browser.titleProperty());
 		
 		// Graphic
 		StackPane stack = new StackPane();
 		
 		// indicator
 		ProgressBar indicator = new ProgressBar();
-		indicator.progressProperty().bind(webEngine.getLoadWorker().progressProperty());
-		indicator.visibleProperty().bind(webEngine.getLoadWorker().runningProperty());
+		indicator.progressProperty().bind(browser.getLoadWorker().progressProperty());
+		indicator.visibleProperty().bind(browser.getLoadWorker().runningProperty());
 		indicator.setMaxSize(30, 11);
 		
 		// label
@@ -326,14 +316,14 @@ public class WebBrowserTabController extends StackPane {
 		//-------------------Items------------------------
 		
 		//searchBar
-		webEngine.getLoadWorker().runningProperty().addListener((observable , oldValue , newValue) -> {
+		browser.getLoadWorker().runningProperty().addListener((observable , oldValue , newValue) -> {
 			//if (list.size() > 0)
 			//	System.out.println(getHistory().getEntries().get(getHistory().getCurrentIndex()).getUrl());
 			
 			if (!newValue) // if !running
 				searchBar.textProperty().unbind();
 			else
-				searchBar.textProperty().bind(webEngine.locationProperty());
+				searchBar.textProperty().bind(browser.locationProperty());
 		});
 		searchBar.setOnAction(a -> loadWebSite(searchBar.getText()));
 		searchBar.focusedProperty().addListener((observable , oldValue , newValue) -> {
@@ -373,23 +363,6 @@ public class WebBrowserTabController extends StackPane {
 						webBrowserController.createNewTab(getHistory().getEntries().get(getHistory().getCurrentIndex() + 1).getUrl()).getTab());
 		});
 		
-		//searchEngineComboBox
-		searchEngineComboBox.getItems().addAll("Google", "DuckDuckGo", "Bing", "Yahoo", "Ajay");
-		searchEngineComboBox.getSelectionModel().select(0);
-		
-		//requestMobileSite
-		requestMobileSite.selectedProperty().addListener((observable , oldValue , newValue) -> {
-			if (newValue)
-				webEngine.setUserAgent("Mozilla/5.0 (Android 6.1; Mobile; rv:58.0) Gecko/20100101 Firefox/58.0");
-			else
-				webEngine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0");
-			
-			System.out.println(webEngine.getUserAgent());
-			
-			//Reload the Website
-			reloadWebSite();
-		});
-		
 		//movingTitleAnimation
 		movingTitleAnimation.selectedProperty().addListener((observable , oldValue , newValue) -> {
 			marquee.checkAnimationValidity(newValue);
@@ -398,17 +371,6 @@ public class WebBrowserTabController extends StackPane {
 		
 		//Load the website
 		loadWebSite(firstWebSite);
-		
-		//showVersion
-		about.setOnAction((a) -> {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.initStyle(StageStyle.UTILITY);
-			alert.setTitle("JavaFX Browser");
-			alert.setHeaderText(null);
-			alert.setContentText("Created by:CVR COLLEGE STUDENT");
-			
-			alert.showAndWait();
-		});
 		
 		/**
 		 * NEW - IMPLEMENTSSTION GOES HERE
@@ -420,7 +382,7 @@ public class WebBrowserTabController extends StackPane {
 		printPage.setOnAction((e) -> {
 			PrinterJob job = PrinterJob.createPrinterJob();
 			if (job != null) {
-				webEngine.print(job);
+				browser.print(job);
 				job.endJob();
 			}
 		});
@@ -545,7 +507,7 @@ public class WebBrowserTabController extends StackPane {
 	 * @return Get the default url home page for the selected search provider
 	 */
 	public String getSelectedEngineHomeUrl() {
-		return getSearchEngineHomeUrl(searchEngineComboBox.getSelectionModel().getSelectedItem());
+		return getSearchEngineHomeUrl( ( (RadioMenuItem) searchEngineGroup.getSelectedToggle() ).getText());
 	}
 	
 	/**
@@ -553,11 +515,7 @@ public class WebBrowserTabController extends StackPane {
 	 * 
 	 * @param webSite
 	 */
-	public void loadWebSite(String webSite) {
-		
-		//Check null or empty
-		//		if (webSite == null || webSite.isEmpty())
-		//			return;
+	private void loadWebSite(String webSite) {
 		
 		//Search if it is a valid WebSite url
 		String load = !new UrlValidator().isValid(webSite) ? null : webSite;
@@ -573,14 +531,12 @@ public class WebBrowserTabController extends StackPane {
 			if (searchBar.getText().isEmpty())
 				finalWebsiteSecondPart = "";
 			else {
-				switch (searchEngineComboBox.getSelectionModel().getSelectedItem().toLowerCase()) {
+				switch ( ( (RadioMenuItem) searchEngineGroup.getSelectedToggle() ).getText()) {
 					case "bing":
-						finalWebsiteSecondPart = "//?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
-						break;
 					case "duckduckgo":
 						finalWebsiteSecondPart = "//?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
 						break;
-					case "yahoo":
+					case "yahoo": //I need to find a solution for this
 						finalWebsiteSecondPart = "//?q=" + URLEncoder.encode(searchBar.getText(), "UTF-8");
 						break;
 					default: //then google
@@ -591,7 +547,7 @@ public class WebBrowserTabController extends StackPane {
 			}
 			
 			//Load it 
-			webEngine.load(finalWebsiteFristPart + finalWebsiteSecondPart);
+			browser.load(finalWebsiteFristPart + finalWebsiteSecondPart);
 		} catch (UnsupportedEncodingException ex) {
 			ex.printStackTrace();
 		}
@@ -602,7 +558,7 @@ public class WebBrowserTabController extends StackPane {
 	 * Loads the default website
 	 */
 	public void loadDefaultWebSite() {
-		webEngine.load(getSelectedEngineHomeUrl());
+		browser.load(getSelectedEngineHomeUrl());
 	}
 	
 	/**
@@ -610,7 +566,7 @@ public class WebBrowserTabController extends StackPane {
 	 */
 	public void reloadWebSite() {
 		if (!getHistory().getEntries().isEmpty())
-			webEngine.reload();
+			browser.reload();
 		else
 			loadDefaultWebSite();
 	}
@@ -713,11 +669,11 @@ public class WebBrowserTabController extends StackPane {
 		public void changed(ObservableValue<? extends State> observable , State oldState , State newState) {
 			if (newState == Worker.State.SUCCEEDED) {
 				try {
-					if ("about:blank".equals(webEngine.getLocation()))
+					if ("about:blank".equals(browser.getLocation()))
 						return;
 					
 					//Determine the full url
-					String favIconFullURL = getHostName(webEngine.getLocation()) + "favicon.ico";
+					String favIconFullURL = getHostName(browser.getLocation()) + "favicon.ico";
 					//System.out.println(favIconFullURL)
 					
 					//Create HttpURLConnection 
@@ -742,7 +698,7 @@ public class WebBrowserTabController extends StackPane {
 		public void changed(ObservableValue<? extends State> observable , State oldState , State newState) {
 			if (newState == Worker.State.CANCELLED) {
 				// download detected
-				String url = webEngine.getLocation();
+				String url = browser.getLocation();
 				logger.info("download url: " + url);
 				//             try{
 				//                 Download download = new Download(webEngine.getLocation());

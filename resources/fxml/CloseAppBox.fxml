@@ -21,7 +21,7 @@
                         <Font size="8.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="fas-window-minimize" iconSize="17" />
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-window-minimize" iconSize="17" />
                      </graphic>
                   </JFXButton>
                   <JFXButton fx:id="maxOrNormalize" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="24.0" style="-fx-font-size: 10;" styleClass="jfx-button-green" text="+">
