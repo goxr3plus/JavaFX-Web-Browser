@@ -28,6 +28,8 @@ public class Main extends Application {
 	
 	public static BorderlessScene borderlessScene;
 	
+	private final int screenMinWidth = 800 , screenMinHeight = 600;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -43,18 +45,20 @@ public class Main extends Application {
 		//Prepare the Stage
 		window = primaryStage;
 		window.setTitle("JavaFX Web Browser");
-		window.setWidth(getVisualScreenWidth()/1.5);
-		window.setHeight(getVisualScreenHeight()/1.2);
+		window.setWidth(getVisualScreenWidth() * 0.9);
+		window.setHeight(getVisualScreenHeight() * 0.9);
+		window.centerOnScreen();
 		window.getIcons().add(InfoTool.getImageFromResourcesFolder("logo.png"));
+		window.centerOnScreen();
 		window.setOnCloseRequest(cl -> System.exit(0));
 		
+		
 		// Borderless Scene
-		borderlessScene = new BorderlessScene(window, StageStyle.UNDECORATED, root, 600 , 400);
-		//borderlessScene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+		borderlessScene = new BorderlessScene(window, StageStyle.UNDECORATED, root, screenMinWidth, screenMinHeight);
+		borderlessScene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 		borderlessScene.setMoveControl(topBar);
 		window.setScene(borderlessScene);
 		
-		window.sizeToScene();
 		window.show();
 		
 	}
