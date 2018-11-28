@@ -1,5 +1,7 @@
 # JAVAFX-WEB-Browser 
-You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place . It took me 2 days to make it and it is here for you ready to test and improve it .
+You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place. 
+
+>Java 10 Web Browser release ===> [On the way](https://github.com/goxr3plus/JavaFX-Web-Browser/releases) ( I can't get it work with JitPack i don't know why ..... ) 
 
 ![browser](https://user-images.githubusercontent.com/20374208/49159861-1d466d00-f32e-11e8-8718-d6b2b3d41b42.jpg)
 
@@ -13,6 +15,7 @@ You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the 
 [contributors-url]: https://github.com/goxr3plus/JavaFX-Web-Browser/graphs/contributors
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 [browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
+
 
 > Older Java 8 and 9 releases [here](https://github.com/goxr3plus/JavaFX-Web-Browser/wiki/Java-8-and-9-Releases)
 
