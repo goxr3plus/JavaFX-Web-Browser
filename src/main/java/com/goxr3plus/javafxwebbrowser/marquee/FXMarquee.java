@@ -1,4 +1,4 @@
-package main.java.com.changes.javafxwebbrowser.marquee;
+package main.java.com.goxr3plus.javafxwebbrowser.marquee;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 /**
  * When the screen element is not big enough to show the text then an animation will start automatically

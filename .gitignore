@@ -47,3 +47,10 @@ Temporary Items
 .apdisk
 /target/
 .settings/.rebel.xml.bak
+
+
+ .settings/org.eclipse.core.resources.prefs
+ .project
+ .classpath
+ spartanizer.xml
+ spartan.xml

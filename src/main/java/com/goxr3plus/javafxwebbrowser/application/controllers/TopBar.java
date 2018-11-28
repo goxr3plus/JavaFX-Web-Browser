@@ -1,7 +1,7 @@
 /*
  * 
  */
-package main.java.com.changes.javafxwebbrowser.application.controllers;
+package main.java.com.goxr3plus.javafxwebbrowser.application.controllers;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 /**
  * The Top bar of the application Window.

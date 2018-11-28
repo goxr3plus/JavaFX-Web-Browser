@@ -1,15 +1,15 @@
 
-package main.java.com.changes.javafxwebbrowser.application;
+package main.java.com.goxr3plus.javafxwebbrowser.application;
 
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.java.com.changes.javafxwebbrowser.application.controllers.TopBar;
-import main.java.com.changes.javafxwebbrowser.browser.WebBrowserController;
-import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
 import main.java.com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
+import main.java.com.goxr3plus.javafxwebbrowser.application.controllers.TopBar;
+import main.java.com.goxr3plus.javafxwebbrowser.browser.WebBrowserController;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 /**
  * From here you start the application

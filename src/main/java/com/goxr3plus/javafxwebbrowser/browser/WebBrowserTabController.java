@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main.java.com.changes.javafxwebbrowser.browser;
+package main.java.com.goxr3plus.javafxwebbrowser.browser;
 
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
@@ -62,8 +62,8 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebHistory.Entry;
 import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
-import main.java.com.changes.javafxwebbrowser.marquee.FXMarquee;
-import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.marquee.FXMarquee;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 /**

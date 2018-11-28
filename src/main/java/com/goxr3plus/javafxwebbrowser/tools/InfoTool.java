@@ -1,7 +1,7 @@
 /*
  * 
  */
-package main.java.com.changes.javafxwebbrowser.tools;
+package main.java.com.goxr3plus.javafxwebbrowser.tools;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.scene.image.Image;
-import main.java.com.changes.javafxwebbrowser.application.Main;
+import main.java.com.goxr3plus.javafxwebbrowser.application.Main;
 
 /**
  * Provides useful methods for retrieving informations.

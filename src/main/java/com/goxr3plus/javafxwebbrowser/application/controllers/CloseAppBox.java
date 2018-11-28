@@ -1,4 +1,4 @@
-package main.java.com.changes.javafxwebbrowser.application.controllers;
+package main.java.com.goxr3plus.javafxwebbrowser.application.controllers;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
-import main.java.com.changes.javafxwebbrowser.application.Main;
-import main.java.com.changes.javafxwebbrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.application.Main;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
 
 public class CloseAppBox extends StackPane {
 	
