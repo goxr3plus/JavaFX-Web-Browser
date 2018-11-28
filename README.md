@@ -1,4 +1,9 @@
 # JAVAFX-WEB-Browser 
+You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place . It took me 2 days to make it and it is here for you ready to test and improve it .
+
+![browser](https://user-images.githubusercontent.com/20374208/49159861-1d466d00-f32e-11e8-8718-d6b2b3d41b42.jpg)
+
+
 
 [![Latest Version](https://img.shields.io/github/release/goxr3plus/JavaFX-Web-Browser.svg?style=flat-square)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
 [![GitHub contributors][contributors-image]][contributors-url]
@@ -9,76 +14,39 @@
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 [browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
 
->[Java 8 Pre-build runnable jar file](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V3.5.1/JavaFXWebBrowser-3.5.1-bin.zip) 
-
->[Java 9 Pre-build runnable jar file](https://github.com/goxr3plus/JavaFX-Web-Browser/releases/download/V9.1.0/JavaFXWebBrowser-9.1.0-bin.zip) 
-
-### Keep the bro alive :)
-
-<a href="https://patreon.com/preview/8adae1b75d654b2899e04a9e1111f0eb" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a>
-<a href="https://www.paypal.me/GOXR3PLUSCOMPANY" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
+> Older Java 8 and 9 releases [here](https://github.com/goxr3plus/JavaFX-Web-Browser/wiki/Java-8-and-9-Releases)
 
 
-### Add it to your project using JitPack :
+### How to add this browser inside your application 
 
-[Take me a trip to JitPack][browser-jitpack-url]
 
-### Step 1. Add the JitPack repository to your build file
-``` XML
+1.
+
+You have to add it as a dependency , you can use [JitPack.io][browser-jitpack-url]
+
+> Step 1. Add the JitPack repository to your build file
+
+```XML
 <repositories>
 	<repository>
-	   <id>jitpack.io</id>
-	   <url>https://jitpack.io</url>
-        </repository>
+		  <id>jitpack.io</id>
+		  <url>https://jitpack.io</url>
+	</repository>
 </repositories>
+
 ```
 
-### Step 1. Add it as a dependency
+> Step 2. Add the dependency
 
-* JavaFX-Web-Browser for Java 9 - (9.x.x)
-
-``` XML
-<dependency>
-	 <groupId>com.github.goxr3plus</groupId>
-	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V9.1.0</version>
-</dependency>
+```xml
+ <dependency>
+	   <groupId>com.github.goxr3plus</groupId>
+	   <artifactId>JavaFX-Web-Browser</artifactId>
+	   <version>Tag</version>
+  </dependency>
 ```
 
-* JavaFX-Web-Browser for Java 8 - (3.x.x)
-
-``` XML
-<dependency>
-	 <groupId>com.github.goxr3plus</groupId>
-	 <artifactId>JavaFX-Web-Browser</artifactId>
-	 <version>V3.5.1</version>
-</dependency>
-```
-
-# Hey friends follow the newest NetBeans tutorial here ->
-
-[![video](http://img.youtube.com/vi/5Y0ZUS7q_lI/0.jpg)](https://www.youtube.com/watch?v=5Y0ZUS7q_lI)
-
-Repository -> https://github.com/goxr3plus/Embedded-JavaFX-Web-Browser-Example-with-Maven
-
-----------------------------------------------------------------------------
-
-The below tutorial is Eclipse Version , older tutorial
-
-# Youtube tutorial 
-[![video](http://img.youtube.com/vi/F1yxsH8qyuI/0.jpg)](https://www.youtube.com/watch?v=F1yxsH8qyuI)
-
-Repository of tutorial -> https://github.com/goxr3plus/JavaFXBrowserOverlay
-
------------------------------------------------------------------------------
-
-# You can use this browser inside your JavaFX Application 
-
-What that means ? Well you can download the jar file with Maven , Gradle etc ( the depencities will come along ) and use it inside your application . 
-
---> You don't believe me ?? ( I am already doing this with [XR3Player](https://github.com/goxr3plus/XR3Player) ) 
-
---> How you can embed it inside your application ? ( Use [JitPack.io][browser-jitpack-url] )
+2. 
 
 Then from inside your code you can create an intance or multiple instances of Browser like this:
 
@@ -96,25 +64,4 @@ Happy :) ?  Cause i am ...
 
 ---
 
-# Description
-
-You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place . It took me 2 days to make it and it is here for you ready to test and improve it .
-
-This project is part of XR3Player java Media Player , so i will continue to improve it in every update :) 
-
-![javafxwebbrowser](https://user-images.githubusercontent.com/20374208/32561528-18323d74-c4b5-11e7-9552-f7aeba4f9728.jpg)
-
----
-
-## --Maven Build--
-
-### Maven Clean Package [ With Javadocs produced ]
-
-```mvn clean package``` 
-
-### Maven Clean Package [ No Javadocs produced ]
-
-```mvn -Dmaven.javadoc.skip=true clean package``` 
-
----
 
