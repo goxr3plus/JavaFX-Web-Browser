@@ -1,3 +1,6 @@
+I need to fix stuff in this browser , it's been time since i left it on Java10 , please feel free to open issues and tell me.
+It's even better if you help me on the development of it too :)
+
 # JAVAFX-WEB-Browser 
 You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place. 
 
