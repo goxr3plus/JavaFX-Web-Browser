@@ -3,7 +3,10 @@
 I need to fix stuff in this browser , it's been time since i left it on Java10 , please feel free to open issues and tell me.
 It's even better if you help me on the development of it too :)
 
-# JAVAFX-WEB-Browser 
+
+----------------------------
+# JAVAFX-WEB-Browser  
+### ( Not actively maintained by me anymore )
 You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place. 
 
 >Java 10 Web Browser release ===> [On the way](https://github.com/goxr3plus/JavaFX-Web-Browser/releases) ( I can't get it work with JitPack i don't know why ..... ) 
