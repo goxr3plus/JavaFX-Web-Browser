@@ -1,5 +1,3 @@
-### ( Not actively maintained by me anymore ) 
-
 ---
 
 <h3 align="center" > JavaFX Web Browser ( Library )</h3>
