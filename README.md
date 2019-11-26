@@ -1,19 +1,18 @@
-# I am developing a new Web Browser based on Chromium => [FXChromium](https://github.com/goxr3plus/FXChromium)
+### ( Not actively maintained by me anymore ) 
 
-I need to fix stuff in this browser , it's been time since i left it on Java10 , please feel free to open issues and tell me.
-It's even better if you help me on the development of it too :)
+---
 
+<h3 align="center" > JavaFX Web Browser ( Library )</h3>
+<p align="center">
+🏵
+</p>
+<p align="center">
+<sup>
+<b> You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place.  </b>
+</sup>
+</p>
 
-----------------------------
-# JAVAFX-WEB-Browser  
-### ( Not actively maintained by me anymore )
-You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place. 
-
->Java 10 Web Browser release ===> [On the way](https://github.com/goxr3plus/JavaFX-Web-Browser/releases) ( I can't get it work with JitPack i don't know why ..... ) 
-
-![browser](https://user-images.githubusercontent.com/20374208/49159861-1d466d00-f32e-11e8-8718-d6b2b3d41b42.jpg)
-
-
+---
 
 [![Latest Version](https://img.shields.io/github/release/goxr3plus/JavaFX-Web-Browser.svg?style=flat-square)](https://github.com/goxr3plus/JavaFX-Web-Browser/releases)
 [![GitHub contributors][contributors-image]][contributors-url]
@@ -24,6 +23,10 @@ You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the 
 [contributors-image]: https://img.shields.io/github/contributors/goxr3plus/JavaFX-Web-Browser.svg
 [browser-jitpack-url]: https://jitpack.io/#goxr3plus/JavaFX-Web-Browser
 
+
+>Java 10 Web Browser release ===> [On the way](https://github.com/goxr3plus/JavaFX-Web-Browser/releases) ( I can't get it work with JitPack i don't know why ..... ) 
+
+![browser](https://user-images.githubusercontent.com/20374208/49159861-1d466d00-f32e-11e8-8718-d6b2b3d41b42.jpg)
 
 > Older Java 8 and 9 releases [here](https://github.com/goxr3plus/JavaFX-Web-Browser/wiki/Java-8-and-9-Releases)
 
