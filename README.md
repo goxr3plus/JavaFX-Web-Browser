@@ -4,7 +4,7 @@
 <p align="center">
 🏵
 </p>
-<p align="center">
+<p align="center"> 
 <sup>
 <b> You always dreamed how to make a WebBrowser in JavaFX? Well then you are in the right place.  </b>
 </sup>
