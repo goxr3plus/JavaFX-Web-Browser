@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import main.java.com.goxr3plus.javafxwebbrowser.tools.InfoTool;
+import main.java.com.goxr3plus.javafxwebbrowser.tools.Constants;
 
 /**
  * The Top bar of the application Window.
@@ -19,18 +19,13 @@ public class TopBar extends BorderPane {
     // ----------------------------------------------
     @FXML
     private Label label;
-
-    // ----------------------------------------------
-    /**
-     * The logger.
-     */
     private static final Logger LOGGER = Logger.getLogger(TopBar.class);
 
     /**
      * Constructor.
      */
     public TopBar() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(InfoTool.FXMLS + "TopBar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.TOPBAR_FXML));
         loader.setController(this);
         loader.setRoot(this);
         try {
