@@ -1,6 +1,3 @@
-/*
- * 
- */
 package main.java.com.goxr3plus.javafxwebbrowser.application.controllers;
 
 import java.io.IOException;
