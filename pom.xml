@@ -28,7 +28,7 @@
 				<directory>resources</directory>
 			</resource>
 		</resources>
-		<!-- <testSourceDirectory>testing</testSourceDirectory> -->
+
 		<plugins>
 
 			<!-- Maven Source Plugin -->
@@ -169,7 +169,7 @@
 			<version>1.6</version>
 			<exclusions>
 				<exclusion>
-					<groupId>*</groupId> <!-- Exclude Project-E from Project-B -->
+					<groupId>*</groupId> 
 					<artifactId>*</artifactId>
 				</exclusion>
 			</exclusions>
@@ -184,9 +184,7 @@
 			<artifactId>image4j</artifactId>
 			<version>0.7.2</version>
 		</dependency>
-		<!-- Probably change to TwelveMonkeys in a future release -->
-		<!-- <dependency> <groupId>com.github.haraldk</groupId> <artifactId>TwelveMonkeys</artifactId> 
-			<version>3.0.1</version> </dependency> -->
+		
 
 	</dependencies>
 	<url>https://github.com/goxr3plus/JavaFX-Web-Browser</url>
